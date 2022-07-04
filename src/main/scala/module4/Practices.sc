@@ -1,10 +1,10 @@
-val res: Unit = for (i <- 1 to 10){
-  println(i * i)
-}
+import scala.annotation.tailrec
 
-val res2: Seq[Int] = for (i <- 1 to 10) yield ( i  * i)
+val res1: Unit = for (i <- 1 to 10) println(i * i)
 
-def f(x: Int) = x * x
+val res2: Seq[Int] = for (i <- 1 to 10) yield  i  * i
+
+def f(x: Int) = x + x
 res2.map { elem =>
   f(elem)
 }
@@ -22,12 +22,12 @@ res2.foreach { elem =>
 val x = (1 to 3).toList
 val y = (1 to 3).toList
 val z = (1 to 3).toList
-println("===xxxx")
-val r: List[List[Int]] = x.map( i => y.map(j => (i + j)))
+println("===========")
+val r: List[List[Int]] = x.map( i => y.map(j => i + j))
 
 val flattedList = r.flatten
 
-val r2: List[Int] = x.flatMap( i => y.map(j => (i + j)))
+val r2: List[Int] = x.flatMap( i => y.map(j => i + j))
 
 // map + flatten = flatMap
 //for - comprehension
@@ -57,7 +57,7 @@ val newR7: List[Int] = for {
   i <- x
   j <- y
   k <- z
-} yield (i * k * k)
+} yield i * j * k
 
 val xs = List(1,2,4)
 val bRes1 = xs.map(elem => if(elem % 2 == 0) true else false)
@@ -67,7 +67,7 @@ val bRes5 = xs.filter(elem => elem % 2 == 0)
 
 val bRes2 = for {
   i <- xs
-  if(i % 2 == 0)
+  if i % 2 == 0
 } yield i
 
 /**
@@ -82,7 +82,7 @@ val r1 = ys.filter(_ % 2 == 0).map(_ + 3)
 
 val r2 = for {
   i <- ys
-  if(i % 2  == 0)
+  if i % 2  == 0
 } yield i + 3
 
 
@@ -90,17 +90,18 @@ println("pattern match on list")
 
 val myList = List(1,2,3,4,5,6)
 
+@tailrec
 def length(xs: List[Int], acc: Int = 0): Int = xs match {
-  case h :: t => length(t, acc + 1)
+  case _ :: t => length(t, acc + 1)
   case Nil => acc
 }
 
 length(myList)
-reverse(myList)
-lastElementOfList(myList)
-firstElementOfList(myList)
-penultimateElementOfList(myList) //second last element of list
-duplicateItemsInList(myList) // List(3,4,5) --> List(3,3,4,4,5,5)
+//reverse(myList)
+//lastElementOfList(myList)
+//firstElementOfList(myList)
+//penultimateElementOfList(myList) //second last element of list
+//duplicateItemsInList(myList) // List(3,4,5) --> List(3,3,4,4,5,5)
 
 
 
