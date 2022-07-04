@@ -122,9 +122,11 @@ def lastElementOfList(xs: List[Int], last: Int = 0): Int =
 }
 lastElementOfList((1 to 10).toList)
 
+
 def firstElementOfList(xs: List[Int]): Int =
   xs match {
-    case h :: t => h
+//    case h :: t => firstElementOfList(t)
+    case h :: _ => h
     case Nil => -200
   }
 firstElementOfList((20 to 25).toList)
