@@ -19,9 +19,9 @@ res2.foreach { elem =>
 }*/
 
 //(1 to 3).foreach( i => (1 to 3).foreach(j => println(i + j)))
-val x = (1 to 3).toList
-val y = (1 to 3).toList
-val z = (1 to 3).toList
+val x: List[Int] = (1 to 3).toList
+val y: List[Int] = (1 to 3).toList
+val z: List[Int] = (1 to 3).toList
 println("===========")
 val r: List[List[Int]] = x.map( i => y.map(j => i + j))
 
