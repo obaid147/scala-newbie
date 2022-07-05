@@ -122,7 +122,7 @@ def lastElementOfList(xs: List[Int], last: Int = 0): Int =
 }
 lastElementOfList((1 to 5).toList)
 
-
+// 3 firstElementOfList
 def firstElementOfList(xs: List[Int]): Int =
   xs match {
 //    case h :: t => firstElementOfList(t)
@@ -131,7 +131,7 @@ def firstElementOfList(xs: List[Int]): Int =
   }
 firstElementOfList((20 to 25).toList)
 
-// 3 Second last element of list
+// 4 Second last element of list
 @tailrec
 def secondLastElementOfList(xs: List[Int]): Int =
   xs match {
@@ -141,8 +141,7 @@ def secondLastElementOfList(xs: List[Int]): Int =
   }
 secondLastElementOfList((1 to 8).toList)
 
-// 4 duplicateItemsInList
-
+// 5 duplicateItemsInList
 @tailrec
 def duplicateItems(xs: List[Int],
                 newList: List[Int] = List()): List[Int] = {
@@ -151,6 +150,5 @@ def duplicateItems(xs: List[Int],
     case Nil => newList
   }
 }
-
 duplicateItems(myList)
 
