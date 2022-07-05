@@ -13,6 +13,7 @@ val xx: Seq[Int] = res2.map { elem =>
 res2.map(f)
 val nn: Seq[Int] = res2.map(f(_))*/
 
+
 /*println("====")
 res2.foreach { elem =>
  f(elem)
