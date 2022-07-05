@@ -92,7 +92,7 @@ val myList = List(1,2,3,4,5,6)
 
 @tailrec
 def length(xs: List[Int], acc: Int = 0): Int = xs match {
-  case head :: tail => length(tail, acc + 1)
+  case _ :: tail => length(tail, acc + 1)
   case Nil => acc
 }
 
@@ -120,14 +120,14 @@ def lastElementOfList(xs: List[Int], last: Int = 0): Int =
     case h :: t => lastElementOfList(t, h)
     case Nil =>  last
 }
-lastElementOfList((1 to 10).toList)
+lastElementOfList((1 to 5).toList)
 
 
 def firstElementOfList(xs: List[Int]): Int =
   xs match {
 //    case h :: t => firstElementOfList(t)
     case h :: _ => h
-    case Nil => -200
+//    case Nil => -200
   }
 firstElementOfList((20 to 25).toList)
 
@@ -136,10 +136,10 @@ firstElementOfList((20 to 25).toList)
 def secondLastElementOfList(xs: List[Int]): Int =
   xs match {
     case _ if xs.size == 2 => xs.head
-    case h :: t => secondLastElementOfList(t)
-    case Nil => -200
+    case _ :: t => secondLastElementOfList(t)
+//    case Nil => -200
   }
-secondLastElementOfList(List(2))
+secondLastElementOfList((1 to 8).toList)
 
 // 4 duplicateItemsInList
 
