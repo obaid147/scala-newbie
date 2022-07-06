@@ -79,7 +79,7 @@ val bRes2 = for {
 val ys = List(1,2,3,4,5,6)
 
 val r1 = ys.filter(_ % 2 == 0).map(_ + 3)
-
+1
 val r2 = for {
   i <- ys
   if i % 2  == 0
@@ -133,13 +133,13 @@ firstElementOfList((20 to 25).toList)
 
 // 4 Second last element of list
 @tailrec
-def secondLastElementOfList(xs: List[Int]): Int =
+def secondLastElementOfList(xs: List[Int]): String =
   xs match {
-    case _ if xs.size == 2 => xs.head
+    case _ if xs.size == 2 => s"${xs.head}"
     case _ :: t => secondLastElementOfList(t)
-//    case Nil => -200
+    case Nil => s"List is empty or has only 1 item"
   }
-secondLastElementOfList((1 to 8).toList)
+secondLastElementOfList((1 to 10).toList)
 
 // 5 duplicateItemsInList
 @tailrec
