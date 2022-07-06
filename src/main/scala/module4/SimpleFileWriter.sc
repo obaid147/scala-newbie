@@ -34,7 +34,7 @@ class WriterOutput2(writer: PrintWriter) {
 }
 
 val ex2 = new PrintWriter(new File(
-  "/home/shehzal/obaid_learning/learning/src/main/scala/module2/MyText.txt"
+  "/home/shehzal/obaid_learning/scala-newbie/src/main/scala/module2/MyText.txt"
 ))
 val out2 = new WriterOutput2(ex2)
 out2.write("Hello").write("to").write("you") // Here we are also ignoring the return type
