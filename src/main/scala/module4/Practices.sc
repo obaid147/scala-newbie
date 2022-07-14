@@ -154,3 +154,15 @@ def duplicateItems(xs: List[Int],
 }
 duplicateItems(myList)
 
+// second Element of myList
+@tailrec
+def secondElementOfList(xs: List[Int], xsCopy: List[Int]): Int = {
+    xs match{
+    case h :: t if t.length == (xsCopy.length - 2) => h
+    case _ :: t => secondElementOfList(t, xsCopy)
+    case Nil => -200
+  }
+}
+
+secondElementOfList(myList, myList)
+
