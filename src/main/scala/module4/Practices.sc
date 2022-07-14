@@ -6,6 +6,7 @@ val res2: Seq[Int] = for (i <- 1 to 10) yield  i  * i
 
 def f(x: Int): Int = x + x
 val xx: Seq[Int] = res2.map { elem =>
+//elem + elem
   f(elem)
 }
 
@@ -127,7 +128,7 @@ def firstElementOfList(xs: List[Int]): Int =
   xs match {
 //    case h :: t => firstElementOfList(t)
     case h :: _ => h
-//    case Nil => -200
+    case Nil => -200
   }
 firstElementOfList((20 to 25).toList)
 
