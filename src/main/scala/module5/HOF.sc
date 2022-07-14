@@ -9,9 +9,8 @@ def sum(f: Int => Int, a: Int, b: Int): Int ={
 def id(x: Int): Int = x
 def cube(x: Int): Int = x * x * x
 @tailrec
-def fact(x: Int): Int = {
-  if(x == 0) 1 else fact(x - 1)
-}
+def fact(x: Int): Int = if(x == 0) 1 else fact(x - 1)
+
 
 def sumInts(a: Int, b: Int): Int = sum(id, a, b)
 def sumCubes(a: Int, b: Int): Int = sum(cube, a, b)
