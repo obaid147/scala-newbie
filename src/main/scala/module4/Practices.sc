@@ -80,7 +80,8 @@ val bRes2 = for {
 val ys = List(1,2,3,4,5,6)
 
 val r1 = ys.filter(_ % 2 == 0).map(_ + 3)
-1
+val r1Copy = ys.filter(x => x % 2 == 0).map(x => x + 3)
+
 val r2 = for {
   i <- ys
   if i % 2  == 0
