@@ -68,7 +68,7 @@ val bRes5 = xs.filter(elem => elem % 2 == 0)
 
 val bRes2 = for {
   i <- xs
-  if i % 2 == 0
+  if i % 2 == 0 // filter
 } yield i
 
 /**
