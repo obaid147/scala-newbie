@@ -27,3 +27,10 @@ def factorial(n: Int): Int = {
 }
 
 factorial(4)
+
+@tailrec
+def fact(x: Int, a: Int = 1): Int =
+  if(x == 1) a
+  else fact(x - 1, x * a)
+
+fact(4)

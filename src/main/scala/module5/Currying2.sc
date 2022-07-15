@@ -1,3 +1,4 @@
+
 def prodF1(f: Int => Int): (Int, Int) => Int = {
   def inner(a: Int, b: Int): Int = {
     if(a < b) inner(b, a)
@@ -16,6 +17,3 @@ def prodF2(f: Int => Int)(a: Int, b: Int): Int = {
 }
 
 prodF2(x => x)(3, 3)
-
-def fact(x: Int): Int = if(x == 0) 1 else fact(x - 1)
-fact(4)
