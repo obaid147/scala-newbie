@@ -102,9 +102,6 @@ n3(4)
 methodOmit3(1)(2)(3)(4)
 // ----------------------------------------------------
 
-def cube(x: Int): Int = x * x * x
-@tailrec
-def fact(x: Int): Int = if(x == 0) 1 else fact(x - 1)
 
 def sumF1(f: Int => Int): (Int, Int) => Int = {
   def Inner(a: Int, b: Int): Int = {
