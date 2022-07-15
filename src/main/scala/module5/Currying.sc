@@ -1,3 +1,5 @@
+import scala.annotation.tailrec
+
 def method(x: Int): Int = x + 1
 method(1)
 
@@ -98,3 +100,31 @@ val n2 = n1(2)
 val n3 = n2(3)
 n3(4)
 methodOmit3(1)(2)(3)(4)
+// ----------------------------------------------------
+
+def cube(x: Int): Int = x * x * x
+@tailrec
+def fact(x: Int): Int = if(x == 0) 1 else fact(x - 1)
+
+def sumF1(f: Int => Int): (Int, Int) => Int = {
+  def Inner(a: Int, b: Int): Int = {
+    if(a > b) 0 else f(a) + Inner(a + 1, b)
+  }
+  Inner
+}
+
+def sumF2(f: Int => Int)(a: Int, b: Int): Int = {
+  if(a > b) 0 else f(a) + sumF2(f)(a + 1, b)
+}
+
+def cube(x: Int): Int = x * x * x
+
+val x1 = sumF1(x => x)
+x1(1, 2)
+
+val x2 = sumF2(x => x)(1, 2)
+
+val x3 = sumF1(cube)
+x3(1, 2)
+
+val x4 = sumF2(cube)(1, 2)
