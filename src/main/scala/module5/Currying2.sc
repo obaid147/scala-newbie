@@ -63,3 +63,12 @@ def fact(n: Int) = products(x => x)(1, n)
 fact(5)
 
 
+def add1(x: Int) = (y: Int) => x + y
+val adder1 = add1(10)
+adder1(20)
+// Partially applied
+def add2(x: Int)(y: Int): Int = x + y
+//val adder2 = add2(10) // This will throw an error missing arg
+// We need to use _ after passing 1 argument as shown below.
+val adder2 = add2(10)_;
+adder2(20)
