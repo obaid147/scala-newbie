@@ -29,7 +29,8 @@ fact(5)
 
 //  --------------------------------------
 def mapReduce(f: Int => Int,
-  combine: (Int, Int) => Int, zero: Int)(a: Int, b: Int): Int =
+  combine: (Int, Int) => Int,
+  zero: Int)(a: Int, b: Int): Int =
   if (a > b) zero
   else {
     combine(f(a), mapReduce(f, combine, zero)(a + 1, b))
@@ -37,4 +38,28 @@ def mapReduce(f: Int => Int,
 def prodF4(f: Int => Int)(a: Int, b: Int): Int =
   mapReduce(f, (x, y)=> x * y, 1)(a, b)
 prodF4(x => x * x)(3, 4)
-// ----------------------------------------
+// ----val n = prodCubes
+
+
+/*def products(f: Int => Int): (Int, Int) => Int = {
+  def inner(a: Int, b: Int): Int = {
+    if(a < b) inner(b, a)
+    else if(b != 0) f(a) + inner(a, b-1)
+    else inner(b, a)
+  }
+  inner
+}*/
+//def prodInts = products(x => x)
+//def prodCubes = products(x => x * x * x)
+def products(f: Int => Int)(a: Int, b: Int): Int = {
+    if(a > b) 1
+    else f(a) * products(f)(a + 1, b)
+}
+
+
+products(x => x)(3, 3)
+
+def fact(n: Int) = products(x => x)(1, n)
+fact(5)
+
+

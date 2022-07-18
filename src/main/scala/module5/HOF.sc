@@ -44,9 +44,10 @@ sumF(cube)(1, 2) == sumCubes(1, 2)
 sumF(cube)(1, 2)== sumF1(cube)(1, 2)
 
 /**
+ * val str = "HeLlO WoRlD
 val lowerCasedString = toLowerCase(string)
 println(lowerCasedString)
-val upperCasedString = toUppderCaseFunction(lowerCasedString)
+val upperCasedString = toUpperCaseFunction(lowerCasedString)
 println(upperCasedString)
 
 def hof() = {
@@ -54,18 +55,24 @@ def hof() = {
 }
  */
 val str: String = "This is a StRiNg"
-def lowerCaseFun(): String => String = {
-        (s: String) => s.toLowerCase()
-}
+//def lowerCaseFun(): String => String = {
+//        (s: String) => s.toLowerCase()
+//}
+val LowerCaseFun: String => String =
+(s: String) => s.toLowerCase()
 
 val lowerCaseString: String => String = lowerCaseFun()
 lowerCaseString(str)
 
-def upperCaseFun(): String => String =
-        (s: String) => s.toUpperCase()
-
 val uppercaseString: String => String = upperCaseFun()
 uppercaseString(str)
+
+val upperCaseFun: String => String =
+        (s: String) => s.toUpperCase()
+
+
+
+
 
 def sumRec(f: Int => Int, a: Int, b: Int) = {
         @tailrec
