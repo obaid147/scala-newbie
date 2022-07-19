@@ -15,8 +15,12 @@ class Rational private(val n: Int, val d: Int){
 
 object Rational{
   def apply(n: Int, d: Int) = new Rational(n, d)
-  implicit def apply(i: Int) = new Rational(i, 1)
+  implicit def apply(i: Int): Rational = new Rational(i, 1)
 }
 
 val half = Rational(1, 2)
 half + 5
+Rational(5)
+5 + half
+
+//TODO pdf page 16

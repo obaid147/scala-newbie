@@ -58,20 +58,18 @@ val str: String = "This is a StRiNg"
 //def lowerCaseFun(): String => String = {
 //        (s: String) => s.toLowerCase()
 //}
-val LowerCaseFun: String => String =
+val lowerCaseFun: String => String =
 (s: String) => s.toLowerCase()
 
-val lowerCaseString: String => String = lowerCaseFun()
+val lowerCaseString: String => String = lowerCaseFun
 lowerCaseString(str)
 
-val uppercaseString: String => String = upperCaseFun()
-uppercaseString(str)
 
 val upperCaseFun: String => String =
         (s: String) => s.toUpperCase()
 
-
-
+val uppercaseString: String => String = upperCaseFun
+uppercaseString(str)
 
 
 def sumRec(f: Int => Int, a: Int, b: Int) = {
@@ -83,3 +81,30 @@ def sumRec(f: Int => Int, a: Int, b: Int) = {
         loop(a, 0)
 }
 val n: Int = sumRec(x => x * x, 3, 5)
+
+def sum(f: Int => Int)(a:Int, b: Int):Int = {
+        if(a > b) 0 else {
+                f(a) + sum(f)(a + 1, b)
+        }
+}
+
+def sumInt: (Int, Int) => Int = sum(x => x)
+def sumCube: (Int, Int) => Int = sum( x => x * x * x)
+
+sumInt(1,3)
+
+def mapReduce(default: Int, f: Int => Int, combine: (Int,  Int) => Int)(a:Int, b:Int): Int = {
+        if(a > b) default else {
+                combine(a, mapReduce(default, f, combine)(a + 1, b))
+        }
+}
+
+/**
+ *  c => x, y => x + y
+   mapReduce(1,5)
+   combine(1, mapReduce(2, 5)
+   combine(2, mapREduce(3, 5))
+   combine(3, mR(4,5))
+   combiine(4, Mr(5. 5))
+   comvine(5, 1)
+ */
