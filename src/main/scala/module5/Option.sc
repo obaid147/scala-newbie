@@ -85,7 +85,7 @@ val combinedResult =
  * Look how many line of code we wrote above,
  */
 
-val betterCombinedResult = for{
+val betterCombinedResult: Option[String] = for{
   firstValue <- Option(unSafeMethod(44))
   // Regardless of whether unsafeMethod returns a valid string or null,
   // Option of that thing will return an option string with regardless of whether it contains a value or not
