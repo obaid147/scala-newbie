@@ -82,7 +82,7 @@ val combinedResult =
   }
 
 /**
- * Look how many line of code we wrote,
+ * Look how many line of code we wrote above,
  */
 
 val betterCombinedResult = for{
