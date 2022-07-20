@@ -26,11 +26,11 @@ numbs.collect(pf2) // List(2, 4, 6, 8, 10)
 
 
 //  match and catch use PartialFunctions
-/**
+
 numbs match {
-  case List() => "It's four!"
+  case numbs => "It's four!"
 }
 try 1 / 0
 catch {
   case _: Exception => 0
-}*/
+}
