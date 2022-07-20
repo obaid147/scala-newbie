@@ -18,22 +18,22 @@ def toLower(s:String): String = {
 
 
 val s = "string"
-
 toUpper(s)
+
 val s2 = "ssSSSS"
 toLower(s2)
 
 def stringOperation(s: String, f: Char => Char):String = {
   val arr = s.toCharArray
   for(index <- 0 until s.length) {
-    arr(index) =f(arr(index))
+    arr(index) = f(arr(index))
   }
   new String(arr)
 }
 
-val toUpperFL = (c: Char) => c.toUpper
+//val toUpperFL = (c: Char) => c.toUpper
 
-stringOperation("sss", toUpperFL)
+//stringOperation("sss", toUpperFL)
 stringOperation("sss", x => x.toUpper)
 stringOperation("sss", x => x.toLower)
 

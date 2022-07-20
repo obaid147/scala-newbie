@@ -43,7 +43,7 @@ divide.isDefinedAt(0)
  * previous divide function definition:
  */
 val divide2: PartialFunction[Int, Int] = {
-  case d: Int if d != 0 => 42 / d
+  case d: Int if d != 0 => 42 / d // MatchError for zero
 }
 divide2.isDefinedAt(0)
 // isDefinedAt method dynamically tests to see if the given
@@ -83,7 +83,9 @@ val test: PartialFunction[Int, Int] =  {
   case d: Int if d != 0 => 44 / d
 }
 
-//(0 to 3).toList map test //Error
+val fg: Int => Int = x => x + 1
+(1 to 3).toList.map(fg)
+(0 to 3).toList map test //Error
 (0 to 3).toList collect test
 
 /**
