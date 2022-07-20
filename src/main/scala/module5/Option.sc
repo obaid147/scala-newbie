@@ -9,7 +9,7 @@ val combinedList = for{ // chain of map and flatMap
 } yield s"$num-$char" // same as below
 // list(1,2,3).flatMap(num => List('a', 'b').map(char => s"$num-$char"))
 
-
+// USE Option/Some/None Whenever a function is expected to return a null value
 /**
  * Option can be thought of as many lists with at most one element.
  * // Option is a "List" with at most one element.
