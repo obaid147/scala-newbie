@@ -1,7 +1,7 @@
 import java.io.File
 import scala.io.{BufferedSource, Source}
 
-/**
+/** ctrl+alt+Q
 val s: BufferedSource = Source.fromFile(new File("/home/shehzal/ex2.txt"))
 val y: Iterator[String] = s.getLines()
 
