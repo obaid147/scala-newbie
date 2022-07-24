@@ -9,11 +9,11 @@ while(y.hasNext) {
   println(y.next())
 }
 */
-val l: List[String] = Source.fromFile(new File("/home/shehzal/ex2.txt")).
+val l: List[String] = Source.fromFile(new File("D:/abc.txt")).
   getLines().toList
 
 //val x: String = Source.fromFile(new File("/home/shehzal/ex2.txt")).getLines().toList.head // error head of empty list
-val optionValue: Option[String] = Source.fromFile(new File("/home/shehzal/ex2.txt")).
+val optionValue: Option[String] = Source.fromFile(new File("D:/abc.txt")).
   getLines().toList.headOption
 
 // concatenate "hi" to x
