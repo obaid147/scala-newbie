@@ -10,7 +10,7 @@ def fileContainsQuestion(file: File): Boolean = {
   } finally source.close()
 }
 
-fileContainsQuestion(new File("/home/shehzal/ex2.txt"))
+fileContainsQuestion(new File("D:/abc.txt"))
 
 
 def emphasizeFileContents(file: File): String = {
@@ -22,13 +22,10 @@ def emphasizeFileContents(file: File): String = {
   }
 
 }
-emphasizeFileContents(new File("/home/shehzal/ex2.txt"))
+emphasizeFileContents(new File("D:/abc.txt"))
 // -------------------------------------------------
 
-
-val newFile = new File("/home/shehzal/ex2.txt")
-val source = Source.fromFile(newFile)
-
+// --------- Generic Program
 def hof[A](file: File, f: String => A, default: A): A = {
   val source = Source.fromFile(file)
   try {
@@ -38,6 +35,7 @@ def hof[A](file: File, f: String => A, default: A): A = {
   } finally source.close()
 }
 
+val newFile = new File("D:/abc.txt")
 
 val h1: Boolean = hof(newFile, (x: String) => x.trim.endsWith("?"), false)
 val h1: String = hof(newFile, (x: String) => x.trim.toUpperCase, "")
