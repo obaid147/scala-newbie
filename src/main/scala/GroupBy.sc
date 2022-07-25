@@ -1,7 +1,7 @@
 import scala.collection.immutable
 
 val m = Map(
-   "aamir" -> "Sonwar",
+   "aamir" -> "sonwar",
   "obaid" -> "batmaloo",
   "zahid" -> "pampore",
   "fayaz" -> "sonwar",
@@ -10,7 +10,7 @@ val m = Map(
 
 val r: Map[String, Map[String, String]] = m.groupBy(_._2)
 
-val r2 = m.groupBy(_._2).flatMap {
+val r2 = m.groupBy(_._2).map {
   case (key, value) =>
     Map(key ->  value.keys)
 

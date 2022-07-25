@@ -9,6 +9,7 @@ val grouped = letters.groupBy(identity)
 
 
 def idenetityx[A](x: A) = x
+// Identity method:- A method that returns it's input value
 
 idenetityx(10)
 idenetityx(true)
