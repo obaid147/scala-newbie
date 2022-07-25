@@ -18,7 +18,7 @@ add4Method(10)(50)(10, 30)
  */
 
 // Curried Generic Loan
-def withFileContent[A](file: File, default: A)(fn: String => A): A = {
+def withFileContents[A](file: File, default: A)(fn: String => A): A = {
   val src = Source.fromFile(file)
   try{
     val x: Option[A] = src.getLines().toSeq.headOption.map{
@@ -30,5 +30,12 @@ def withFileContent[A](file: File, default: A)(fn: String => A): A = {
 
 val book = new File("D://abc.txt")
 
-val n: String = withFileContent(book, "")(x => x.toUpperCase)
-val m = withFileContent(book, false)(x => x.trim.endsWith("?"))
+val n: String = withFileContents(book, "")(x => x.toUpperCase)
+val m = withFileContents(book, false)(x => x.trim.endsWith("?"))
+
+// find most common letter
+withFileContents(book, 'e') { line => // curried with curlies
+  val letters = line.toLowerCase.filterNot(_ == ' ').toSeq
+  val grouped = letters.groupBy(identity)
+  grouped.maxBy { case (char, seq) => seq.length }._1
+}
