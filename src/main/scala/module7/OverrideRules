@@ -1,0 +1,24 @@
+Override concrete members
+def, val, lazy val, var might all be overridden in subclasses:
+
+1 def: can be overridden by all kinds of members(def, val, lazy val, and var).
+
+2 val: can only be overridden by val.
+
+3 lazy val: can only be overridden by lazy val.
+
+4 var: a concrete var cannot be overridden.
+
+Override abstract members
+lazy val cannot be abstract, so there are only three rules:
+
+1 def: can be overridden by all kinds of members(def, val, lazy val, and var).
+
+2 val: can be overridden by val and lazy val.
+
+3 var: can be overridden by (1) var, or (2) a pair of read and write operations implemented by def, val, or lazy val.
+
+---------------------------------------
+A stable member can only be overridden by a stable member
+class X { val stable = 1}
+class Y extends X { override var stable = 1 } // error
