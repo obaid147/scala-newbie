@@ -12,15 +12,15 @@ obj.+:(11) // OOPS world , left associative
 
 val l = List(1,2,3)
 
-l.::(22)
+l.::(22) // Prepend
 
-32 :: l // right associative
+32 :: l // right associative // Prepend
 
 Nil.::(3).::(11) //chaining or composition
 
 val list1 = List(1,2,3,4)
 val list2 = List(5,6,7,9)
-val res = list1 ::: list2
+val res = list1 ::: list2 // concat
 
 val TwoDList = List(List(1,2,3), List(3,3,4))
 val flatted = TwoDList.flatten
@@ -57,12 +57,16 @@ object PrintSoundsOfAnimal {
 
   /**
    * A subtype can be passed to any Super type in a method
-   * @param animal
+   * param animal
    */
   def printSound(animal: Animal): Unit = {
     println(animal.sound)
   }
 
+  def printSound2(animal: Animal*): Unit =
+    for{
+      s <- animal
+    } println(s.sound)
 }
 
 /*
@@ -73,6 +77,7 @@ PrintSoundsOfAnimal.printSoundOfDuck(new Duck)*/
 PrintSoundsOfAnimal.printSound(new Cat)
 PrintSoundsOfAnimal.printSound(new Dog)
 PrintSoundsOfAnimal.printSound(new Duck)
+PrintSoundsOfAnimal.printSound2(new Cat, new Duck)
 
 val animal1: Animal = new Dog
 val animal2: Animal = new Cat
@@ -135,7 +140,7 @@ Map
 
 val t1: (Int, Int) = (1,2)
 val t2 = (1 -> 2)
-val t3: Tuple2 [Int, Int] = (2,3)
+val t3: Tuple2 [Int, Int] = (1, 2)
 
 //Predef is imported automatically in every file
 //scala package objects are also imported automatically
@@ -157,17 +162,21 @@ implicit class AbcOps(s: String) {
     if (s.contains("a") || s.contains("e")) true else false
   }
 }
-val s: String = "abc"
+val s: String = "abc" // not an instance of AbcOps but String
 s.containVowels
 
-val mapToRIches = Map(
+val mapToRiches = Map(
   1 -> "Steal",
   2 -> "profit"
 )
 
-for (m <- mapToRIches) {
+for (m <- mapToRiches) {
   println(s"key : ${m._1}, value: ${m._2}")
 }
+
+for {
+  m <- mapToRiches
+}  println(s"key : ${m._1}, value: ${m._2}")
 
 // New concept, when nothing in class body
 /*class Person(name: String)
