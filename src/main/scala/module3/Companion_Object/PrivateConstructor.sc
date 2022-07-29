@@ -24,7 +24,7 @@ val five = Rational(5)  // R(5/1)
  * val half = new Rational(1, 2)
  * new keyword is not allowed! [private constructor]
  * Companion object can access private constructor
- * Whenever compiler sees that there is no new keyword, It jumps to apply method
+ * Whenever compiler sees that there is no new keyword, It looks for apply method inside companion object
  * re-written as:-
  * val fifth = Rational.apply(1, 5)
  * val five = Rational.apply(5)
