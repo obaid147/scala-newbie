@@ -1,6 +1,10 @@
 package module1
 
-object jj extends App {
+object ValAndVarDiff extends App {
   var x = 10
-  val y = x = 20
+  try {
+    val y = x = 20
+  } catch{
+    case x: Exception => x
+  }
 }
