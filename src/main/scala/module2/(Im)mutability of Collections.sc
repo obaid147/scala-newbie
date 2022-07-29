@@ -21,6 +21,7 @@ var s2 = immutable.Set(1,2,3)
 //Now if we use += on both of these:
 s1 += 4 // works because s1 has a += operator, We used mutable from collection
 s2 += 4 // works because s2 is a var
+s2
 
 /**
  * For s2, Scala uses a re-writing rule to the expression to s2 = s2 + 4

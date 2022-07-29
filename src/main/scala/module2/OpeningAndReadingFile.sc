@@ -1,6 +1,6 @@
 import scala.io.Source
 
-val fileName = "/home/shehzal/obaid_learning/learning/src/main/scala/module2/MyText.txt"
+val fileName = "/D:/scala-newbie/src/main/scala/module2/MyText.txt"
 val fileSource = Source.fromFile(fileName)
 
 for (line <- fileSource.getLines()) {

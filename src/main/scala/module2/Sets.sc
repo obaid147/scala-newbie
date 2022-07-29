@@ -9,4 +9,8 @@ val set1 = Set(1,2,3,1,2,4,5) // Produces a Set(5,1,2,3,4)
 def squareRootOfAll(xs: Seq[Int]): Seq[Double] =
   xs.map(x => math.sqrt(x))
 
-squareRootOfAll(set1) // will not compile
+//squareRootOfAll(set1)  will not compile because set is not a subset of seq
+
+def sqRoot(xs: Set[Int]): Set[Double] = xs.map(x => math.sqrt(x))
+
+sqRoot(set1)

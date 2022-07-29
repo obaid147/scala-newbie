@@ -14,6 +14,9 @@ results._1
 results._2
 // 15: Int
 // 5: Int
+// LENGTH OF TUPLE
+var n = results.productArity
+
 /**
  *The types are carried through, _1 and _2 can be thought of as item 1 and item 2
  * There's a nicer way to get the parts:
@@ -31,6 +34,6 @@ d // 1: Int
 e // "too": String
 
 /**
- * Tuples can have arity up to 22, because it had to stop somewhere
+ * Tuples can have arity(length) up to 22, because it had to stop somewhere
  * Future versions of Scala may (probably will) create tuple arities on the fl
 */
