@@ -6,7 +6,7 @@ def fileContainsQuestion(file: File): Boolean = {
   try {
     source.getLines().toSeq.headOption.map { line =>
       line.trim.endsWith("?")
-    }.getOrElse(false)
+    }.getOrElse(false) // because of headOption
   } finally source.close()
 }
 

@@ -16,11 +16,12 @@ val l: List[String] = Source.fromFile(new File("D:/abc.txt")).
 val optionValue: Option[String] = Source.fromFile(new File("D:/abc.txt")).
   getLines().toList.headOption
 
-// concatenate "hi" to x
+// concatenate "text from file" to x
 
 //x.get + " man" //java.util.NoSuchElementException: None.get
 
 optionValue.getOrElse("") + " man"
+
 
 val res: String = if(optionValue.isDefined) {
   optionValue.get + " man"

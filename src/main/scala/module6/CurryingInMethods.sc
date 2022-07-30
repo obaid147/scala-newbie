@@ -9,8 +9,8 @@ add3Method{3}{1}{7}
 
 def add4Method(a: Int)(b: Int)(c: Int, d: Int): Int = a + b + c + d
 
-add4Method(10)(50)(10, 30)
-//add4Method{33}{1}{21, 22} ERROR
+add4Method {10}{50}(10, 30)
+//add4Method{33}{1}{21, 22} ERROR because cannot use 2 arguments inside {}
 
 /**
  * Often, function parameters are curried in a separate parameter
