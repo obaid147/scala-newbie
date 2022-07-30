@@ -1,0 +1,14 @@
+1 null is a concept familiar in many other languages.
+
+2 It can be assigned to any reference type in those languages to denote the
+    absence of a reference.
+
+3 "It's as though there is a Null type that is a subclass of all other types,
+    with a single null instance" -- Paraphrased from the Java Language Spec.
+
+4 In Scala this is literally the case, Null is a type, it is a subclass of the whole
+    set of AnyRefs, and there is a single instance null of that type.
+
+5 There is also a Nothing type which is the subtype of everything in the
+    Scala type system. There is no instance of Nothing, nor can there be one.
+    It exists solely to complete the type system.
