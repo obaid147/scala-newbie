@@ -19,5 +19,7 @@ println(new_collection)
 
 val myCollection2 = List(2, 3, 4)
 val newCollection = myCollection2.map(x => x * x)
-println(newCollection
-)
+println(newCollection)
+
+val m = myCollection.map{res => res}
+// Whenever we do map on collections, map will return the same collection.

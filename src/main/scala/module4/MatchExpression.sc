@@ -19,9 +19,9 @@ val x = 1
 // We are using guard here from FourG's Of For
 val y = 'a'
 /*val guardMatcher =*/
-  y match{
+  y match{ // Takes value of y (lowercase) as ascii equivalent which is 121
     case 0 => "It's a Zero"
-    case v if y > 0 => s"It's a Positive number $v" // guard is before => 'rocket'
+    case v if y > 0 => s"It's a Positive number $v" // guard is before => 'rocket',
     // compiler takes y and puts it in v, which becomes a val, that has this value in it
     case v => s"It's a Negative number ${v.abs}" // here we have no guard, this would match anything else here
     case _ => "None of the numbers" // matches the above line as there is no guard

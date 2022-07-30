@@ -31,6 +31,7 @@ val flattedList: List[Int] = r.flatten
 val r2: List[Int] = x.flatMap( i => y.map(j => i + j))
 
 // map + flatten = flatMap
+// instead of flatMap we can use
 //for - comprehension yield myNewList
 
 val r3: List[Int] = for {
