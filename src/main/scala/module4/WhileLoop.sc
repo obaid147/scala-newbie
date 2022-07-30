@@ -38,7 +38,7 @@ def outerMethod(n: Int, acc: Int = 0) = {
   def innerMethod(acc: Int): Any = {
     if (acc >= n) 0
     else {
-      println("\nHi")
+      println("Hi")
       innerMethod(acc + 1)
     }
   }
