@@ -2,10 +2,11 @@
 //What if we want to greet an existing collection of names?
 val names = ("obaid", "fayaz", "wani")
 
-def greet(greeting: String, names: _*) = {
+def greet(greeting: String, names: String*) = {
   for (name <- names) yield s"$greeting, $name"
 }
-greet("Hi", names)
+greet("Hi", "Fred", "Julie", "Kin")
+//greet("Hi", names) does not compile
 
 /**
  * Note that if using expansion operator, the original collection type is retained (in this case, List)
