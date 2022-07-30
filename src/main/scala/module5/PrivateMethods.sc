@@ -11,7 +11,7 @@ object FactSeq{
     if (ct > n)
       acc
     else
-      factSeqTail(n, ct * acc.head :: acc, ct + 1)
+      factSeqTail(n, ct * acc.head :: acc, ct + 1) // prepend
   }
 
 }

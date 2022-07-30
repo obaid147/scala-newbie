@@ -1,3 +1,15 @@
+/**
+ * A function literal (or lambda) is just a function (like a method) that may not have a name.
+ * From the point of view of the caller, the syntax is interchangeable, e.g.
+ * */
+
+def multiplyMethod(a: Int, b: Int): Int = a * b
+val multiplyFunction: (Int, Int) => Int = (a, b) => a * b
+multiplyMethod(2, 3)
+// res0: Int = 6
+multiplyFunction(2, 3)
+// res1: Int = 6
+
 val nums = (1 to 5).toList
 
 // List[Int] = List(1, 4, 9, 16, 25)
