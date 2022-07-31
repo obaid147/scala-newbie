@@ -17,3 +17,6 @@ op1 match {
 
 // returns String
 val op3 = op2.getOrElse("")
+
+/// for Option4.sc
+op2.drop(4).headOption
