@@ -9,7 +9,7 @@ abstract class Classic(val vintage: Int, name: String) extends Car(name){
 trait Convertible extends Car{
   val poweredTop: Boolean
   val name: String
-  def describe(): String
+  override def describe(): String
 }
 
 case class ClassicConvertible(make: String,
