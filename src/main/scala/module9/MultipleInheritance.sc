@@ -13,11 +13,11 @@ trait Convertible extends Car{
 }
 
 case class ClassicConvertible(make: String,
-                         model: String,
-                         override val vintage: Int,
-                         override val poweredTop: Boolean,
-                         override val name: String)
-  extends Classic(vintage, name) with Convertible
+                              model: String,
+                              override val vintage: Int,
+                              override val poweredTop: Boolean,
+                              override val name: String)
+                         extends Classic(vintage, name) with Convertible
 {
   override def describe(): String = s"Car = $name, make = $make, model = $model, year = $vintage" +
     s"Powered Top = $poweredTop"
