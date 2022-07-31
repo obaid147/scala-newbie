@@ -22,3 +22,18 @@ import StringSyntax._
 // new StringOps(string).containVowel
 "aamir".containsVowel
 string.containsVowel
+
+//////////////////////
+
+object IntegerSyntax{
+  implicit class TimesDo(i: Int) {
+    def times(fn: => Unit): Unit = {
+     for(_ <- 1 to i) fn
+    }
+  }
+}
+
+import IntegerSyntax._
+5 times{
+  println("Oby")
+}
