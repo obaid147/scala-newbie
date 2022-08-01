@@ -40,7 +40,8 @@ trait to form a tall, single-column hierarchy of the class
 and traits", a process known as linearization.
  */
 
-trait Base { override def toString = "Base" }
+trait Base {
+  override def toString = "Base" }
 class A extends Base {
   override def toString = "A->" + super.toString }
 trait B extends Base {
@@ -53,3 +54,17 @@ class D extends A with B with C {
 new D() //  D->C->B->A->Base
 //This perfectly reflects the structure of
 // the linearized inheritance graph.
+
+// MultiLevel Inheritance
+trait Base1 {
+  override def toString = "Base" }
+class A1 extends Base1 {
+  override def toString = "A->" + super.toString }
+trait B1 extends A1 {
+  override def toString = "B->" + super.toString }
+trait C1 extends B1 {
+  override def toString = "C->" + super.toString }
+class D1 extends A1 with B1 with C1 {
+  override def toString = "D->" + super.toString }
+
+new D1()
