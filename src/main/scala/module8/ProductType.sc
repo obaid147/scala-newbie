@@ -30,3 +30,18 @@ tuple.productArity
 tuple.productIterator.toList
 tuple.productElement(2)
 tuple.productPrefix
+
+// write a method called listProduct to turn any Product type into
+// a List[Any] with the fields from the product in it.
+
+def listProduct(x: Product) = {
+        x.productIterator.toList
+}
+val tup = (1, '2', "three")
+listProduct(tup) == List(1, '2', "three")
+
+case class Person(first: String,
+                  last: String, age: Int, gender: Char)
+val p1 = Person("Sally", "Smith", 43, 'F')
+
+listProduct(p1) == List("Sally", "Smith", 43, 'F')
