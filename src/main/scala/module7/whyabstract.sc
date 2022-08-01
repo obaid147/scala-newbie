@@ -4,13 +4,14 @@ abstract class Food {
    //so on
 }
 
+// We use abstract to enforce method/field implementation
 abstract class Fruit extends Food {
   def sweetnessLevel:Int
 }
 
-abstract class Cereal extends Food {
+/*abstract class Cereal extends Food {
   def abc: String
-}
+}*/
 
 abstract class Veg extends Food {
   def isLeafy:Int
