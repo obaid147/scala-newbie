@@ -15,7 +15,7 @@ case class Car(make: String, model: String, year: Int){
 }
 
 val mustang = Car("Ford", "Mustang", 1965) // point 4
-
+mustang.hashCode()
 mustang.make
 mustang.model
 mustang.year
@@ -26,3 +26,49 @@ mustang == Car("Ford", "Mustang", 1964)
 
 mustang.equals(Car("Ford", "Mustang", 1965))
 mustang.eq(Car("Ford", "Mustang", 1965))
+
+
+/*class Bicyble {
+  def name: String = "hero bicyble"
+
+  override def toString: String = s"Bicyble($name)"
+}
+
+val obj = new Bicyble()
+obj.hashCode()*/
+
+class Plant(val name: String)
+
+val rose = new Plant("rose")
+val sf = new Plant("sf")
+
+case class Animal(val name: String)
+
+val cat = Animal("cat")
+val dog = Animal("dog")
+
+
+//same object same content
+rose eq rose
+cat eq cat
+rose == rose
+cat == cat
+
+
+rose eq sf
+cat eq dog
+rose == sf
+cat == dog
+
+
+//differnt objects same content in case of case class
+Animal("mouse") == Animal("mouse")
+new Plant("plant1") == new Plant("plant1")
+
+//simple eq always does reference check
+Animal("mouse") eq Animal("mouse")
+new Plant("plant1") eq new Plant("plant1")
+
+/**
+ * if case class references are differnt but have same contents, == will give true
+ */
