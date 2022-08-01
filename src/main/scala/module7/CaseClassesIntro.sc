@@ -42,7 +42,7 @@ class Plant(val name: String)
 val rose = new Plant("rose")
 val sf = new Plant("sf")
 
-case class Animal(val name: String)
+case class Animal(name: String)
 
 val cat = Animal("cat")
 val dog = Animal("dog")
@@ -61,8 +61,9 @@ rose == sf
 cat == dog
 
 
-//differnt objects same content in case of case class
+// different objects same content in case of case class
 Animal("mouse") == Animal("mouse")
+Animal("mouse") equals  Animal("mouse")
 new Plant("plant1") == new Plant("plant1")
 
 //simple eq always does reference check
@@ -70,5 +71,6 @@ Animal("mouse") eq Animal("mouse")
 new Plant("plant1") eq new Plant("plant1")
 
 /**
- * if case class references are differnt but have same contents, == will give true
+ * if case class if references are different but have
+   same contents, == and equals will give true
  */
