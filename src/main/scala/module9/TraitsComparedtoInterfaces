@@ -1,0 +1,11 @@
+1 Java (and others) sidestep this problem using interfaces
+2 A class has a single superclass, and multiple interfaces
+3 Interfaces cannot have state or behavior, only abstract method definitions
+4 Therefore you cannot accidentally skip behavior, but you also are more
+  limited in where behavior can be inherited from
+5 In Scala, traits are like interfaces (indeed pure abstract traits are Java
+  interfaces)
+6 But they have been extended to include state and behavior
+7 A class still has a single super-class, but may have multiple traits mixed in
+  as well
+8 The diamond inheritance problem is tackled in a new, clever way
