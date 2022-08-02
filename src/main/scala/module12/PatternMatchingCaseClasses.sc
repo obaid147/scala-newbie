@@ -42,6 +42,7 @@ lazy val harry2 = harry.copy(phone = sally2.phone)
 
 // And, you get pattern matching...
 
+// CompoundPattern Matches
 def postCodeForHarry(person: Person): String = person match {
   case Person("Harry", _, Some(
               Address(street, city, Some(postcode)))) =>
