@@ -3,5 +3,11 @@ def withIntStringMap(x: Any): Int = x match {
   case _ => 0
 }
 
-withIntStringMap(Map(2 -> "One"))
-// Map(2 -> AnyString) always give 4
+/*Scala will match the Map vs not, but will believe you on the inner erased
+  types, so you can get:*/
+  withIntStringMap(Map(2 -> "two")) // 4 - as expected
+withIntStringMap(List(2)) // 0 - not a match
+//withIntStringMap(Map("One" -> 1)) // ClassCastException!
+/*
+The safe way to match erased type parameters is case m: Map[_, _]
+Alternatively, type-tags can be used - see advanced course*/
