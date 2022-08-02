@@ -20,6 +20,11 @@ describeType(true)
 // Once matched, the variable is typed on both the left and right of the =>
 // This is idiomatic and favored over the form:
 val s: Any = "Hello"
+s match {
+  case str: String =>
+    str.reverse
+  case _ =>
+}
 if(s.isInstanceOf[String]) {
   s.asInstanceOf[String].reverse
 }
