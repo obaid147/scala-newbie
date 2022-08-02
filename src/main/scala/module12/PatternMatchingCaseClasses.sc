@@ -7,10 +7,10 @@ case class Person(name: String,
                   address: Option[Address])
 
 
-val harry = Person("Harry", None, Some(Address(
+lazy val harry = Person("Harry", None, Some(Address(
   "123 Little Whinging way", "Purley", Some("PN22 6RT")
 )))
-val sally = Person("Sally", Some("321-222-3344"), None)
+lazy val sally = Person("Sally", Some("321-222-3344"), None)
 // Built in useful default toString
 harry
 sally
@@ -33,10 +33,10 @@ harry.phone.getOrElse("")
 sally.phone.getOrElse("")
 
 // And, a copy method
-val sally2 = sally.copy(address = harry.address,
+lazy val sally2 = sally.copy(address = harry.address,
               phone = Some("321-333-2211"))
 
-val harry2 = harry.copy(phone = sally2.phone)
+lazy val harry2 = harry.copy(phone = sally2.phone)
 // case classes are immutable by default, but copy makes
 // them easy to work with in a functional way.
 
