@@ -1,10 +1,13 @@
 val numbers1 = List(1, 2, 3)
 val numbers2 = List(4, 5, 6)
-for {
+val n: List[Int] = for {
   i <- numbers1
   j <- numbers2
   if i % 2 == 0 && j % 2 == 0
 } yield i * j // simple for comprehension
+n.map(x => n.map(y => x + y))
+n.flatMap(x => n.map(y => x + y))
+
 
 // Generators in a for block are also pattern matches.
 val numbersMap = Map(1 -> "one", 2 -> "two", 3 -> "three")
