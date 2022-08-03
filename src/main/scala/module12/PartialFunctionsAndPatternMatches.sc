@@ -15,8 +15,8 @@ val r = new PartialFunction[Int, Int] {
 }
 r(10)
 
-val d: PartialFunction[Int, Int] = {
-  case x if x % 3 == 0 => x * 3
+val d: PartialFunction[Int, String] = {
+  case x if x % 3 == 0 => (x * 3).toString
 }
 d(12)
 
@@ -57,9 +57,9 @@ z(4)
 // This means that a partial function (which is a pattern match) can
 // substitute for any Function1
 
-lazy val numbersMap = Map(1 -> "One", 2 -> "Two", 3 -> "Three")
+val numbersMap = Map(1 -> "One", 2 -> "Two", 3 -> "Three")
 
-numbersMap.map{
+/*numbersMap.map{
   case (1, v) => s"Its 1 with $v"
   case (k, v) => s"Not 1 but ($k, $v)"
 }
@@ -67,4 +67,12 @@ numbersMap.map{
 numbersMap match {
   case x: Map[Int, Int] => s"Its 1 with ${x.head}" // erasure
   //case x: Map[Int, String] => s"Its 1 with ${x.head}"
+}*/
+
+/// Partial Function Pattern Match
+
+val pf1: PartialFunction[Map[Int, String], String] = {
+  case x => s"$x"
 }
+pf1(numbersMap)
+pf1(Map(numbersMap.head._1 -> numbersMap.head._2))
