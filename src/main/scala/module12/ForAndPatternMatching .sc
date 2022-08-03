@@ -1,5 +1,12 @@
-// Generators in a for block are also pattern matches.
+val numbers1 = List(1, 2, 3)
+val numbers2 = List(4, 5, 6)
+for {
+  i <- numbers1
+  j <- numbers2
+  if i % 2 == 0 && j % 2 == 0
+} yield i * j // simple for comprehension
 
+// Generators in a for block are also pattern matches.
 val numbersMap = Map(1 -> "one", 2 -> "two", 3 -> "three")
 
 for((k, v) <- numbersMap){
@@ -17,7 +24,7 @@ case class Person(name: String, phone: Option[String],
 
 //////////////////////////////////////////////////////
 lazy val harry = Person("Harry", None, Some(Address(
-  "123 Little Whinging way", "Purley", Some("PN22 6RT"))))
+  "123 Little Whinging way", "SXR", Some("PN22 6RT"))))
 
 lazy val sally = Person("Sally", Some("321-222-3344"), None)
 ////////////////////////////////////////////////////
