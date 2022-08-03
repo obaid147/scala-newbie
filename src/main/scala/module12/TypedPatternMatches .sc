@@ -47,7 +47,7 @@ if(s.isInstanceOf[String]) {
 // commits
 1.Instead of IsInstanceOf asInstanceOf use pattern matching in type pattern matches.
 2.Notes.txt with keywords
-3.MatchingTry, wrapping a type with Try and wrapping try with Option, toOption
+3.MatchingTry, wrapping a type with Try and wrapping try with Option, toOption.
 4.Reverse a list using tail recursion
 5.Type Erasure,  at run time, only the class exists, not its type parameters.
 This means that the runtime type of List[Int] and List[String] is actually the same.
