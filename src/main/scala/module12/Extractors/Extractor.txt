@@ -1,0 +1,23 @@
+While apply() is a way of writing factory methods for our data types and classes, unapply() is good for deconstructing
+the class into values. What makes apply() and unapply() special is creating and deconstructing objects silently.
+
+We use our apply() method just by calling User(“Jack”, 30) instead of User.apply(“Jack”, 30).
+Also, by pattern matching on the user object, the unapply() method is called silently.
+
+* In Scala, every object that has an unapply() method is called an extractor object.
+ * The unapply() method is the basis of pattern matching in Scala because this method
+      helps us to extract data values compacted in objects
+
+1. // https://www.geeksforgeeks.org/scala-extractors/#:~:text=The%20unapply%20method%20breaks%20the,Scala
+2. //https://www.baeldung.com/scala/extractor-objects
+3. // https://medium.com/wix-engineering/scala-pattern-matching-apply-the-unapply-7237f8c30b41
+
+// Apply The UnApply.sc
+apply is a special method name in Scala, which by convention can be omitted from your code.
+So, FullName(...) is equivalent to FullName.apply(...). We are using it to construct new instances of FullName
+without needing the new keyword.
+def unapply(full: FullName): Some[(String, String)]
+
+unapply does the opposite — it deconstructs an instance of FullName, and is the foundation of pattern matching.
+We will focus on this method for the most of this article. In this case, it deconstructs FullName into two string
+values, and wraps them in Some, which means that it matches any instance of FullName
