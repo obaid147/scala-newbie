@@ -73,6 +73,9 @@ numbersMap match {
 
 val pf1: PartialFunction[Map[Int, String], String] = {
   case x => s"$x"
+//    numbersMap match {
+//      case x => x.map(x => x)
+//    }
 }
 pf1(numbersMap)
 pf1(Map(numbersMap.head._1 -> numbersMap.head._2))
