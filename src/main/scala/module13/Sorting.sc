@@ -38,3 +38,35 @@ xs.sortBy(_.name)
 
 xs.sortWith((p1, p2) => p1.age < p2.age)
 // sortWith does not use implicits.
+
+// Matrix using transpose method
+val matrix = List(List(1,2,3), List(4, 5, 6), List(7, 8 ,9))
+matrix.transpose
+
+// sum all elements of matrix
+matrix.flatten
+matrix.flatten.sum
+
+//Group by first letters of a word: CaseSensitive
+val words = List("width", "four", "four", "char", "word")
+words.groupBy(_.head)
+
+// More Functions
+trait Fruit
+case class Apple(name: String) extends Fruit
+case class Orange(name: String) extends Fruit
+
+val fruits = List(Apple("Fiji"), Orange("Jaf"), Apple("Cox"))
+
+fruits.map{
+  case a: Apple => a
+}
+fruits.collect{
+  case a: Apple => a
+}
+// We saw collect does not throw match error.
+/**
+ * collect is like a filter and map combined into one,
+ * Takes a PartialFunction, and will narrow the resulting
+ * List type if possible.
+ */
