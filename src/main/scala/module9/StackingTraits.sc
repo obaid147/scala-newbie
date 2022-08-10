@@ -27,6 +27,7 @@ trait HardTopConvertible extends Convertible{
   override def describe: String =
     s"hard-top ${super.describe}"
 }
+
 //STACK TRACE 1
 class ClassicConvertible1(val color: String, val vintage: Int)
   extends Car with  PoweredConvertible with Classic with HardTopConvertible
@@ -64,3 +65,14 @@ class ClassicConvertible3(val color: String, val vintage: Int) extends Car
 new ClassicConvertible3("Green", 1993)
 // vintage 1993 hard-top powered convertible Green car
 /**Only  subclasses of Convertible can call it*/
+
+// --------- Construction Composition
+/** You can also include traits as you are creating a new instance of a class.(JIT)
+ * This has the effect of introducing a new anonymous sub-class and
+ * creating one instance of it immediately, which is given back to you. */
+
+class ClassicCar(val color: String, val vintage: Int) extends Car
+val ccc = new ClassicCar("Orange", 1994) with PoweredConvertible with HardTopConvertible
+// hard-top powered convertible vintage 1994 Orange car
+// concept here is that while creating an instance, we can use multiple traits using with keyword.
+// Only when the class is using extends keyword.
