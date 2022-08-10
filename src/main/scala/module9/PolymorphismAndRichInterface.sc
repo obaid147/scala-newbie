@@ -27,3 +27,5 @@ val demo = new Demo
 demo("Cherry") // argument for Function1
 
 // andThen is a method we get for free from Function1
+val descriptionLength = demo.andThen(_.length)
+descriptionLength("Cherry")
