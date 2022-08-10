@@ -27,7 +27,7 @@ modelT.describe
    superclass and mixing in the trait. E.g. the above is really:
  */
 class ActualCar2(val color: String, val name: String) extends AnyRef with Car
-Classes can extend only 1 class and multiple traits.
+//Classes can extend only 1 class and multiple traits.
 
 // traits are abstract by default.
 // After creating a trait, We get an anonymous class which helps us to create an instance. Line 13
