@@ -1,0 +1,23 @@
+Scala has three visibility scopes, private, protected and public.
+
+There is no public keyword: classes, traits, objects, val's and def's not
+marked private or protected are public by default.
+
+private means only available to the current class, companion object, or
+inner classes/objects in the current class.
+
+protected means private access plus availability to any subclass of the
+current class.
+
+public means anyone can see and access the item. This is the default when
+no other visibility is specified.
+
+Java's package protected default is not the default in Scala, and package
+access is handled through an orthogonal mechanism.
+
+Scala also has a private[this] visibility which means private to this
+specific instance only, companions, nested classes and even other
+instances of the same class cannot access a private[this].
+
+private[this] is the default visibility for constructor parameters that are
+not parametric-fields (i.e. not in a case class or marked with a val).
