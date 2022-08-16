@@ -14,9 +14,31 @@ import com.sun.nio.sctp.NotificationHandler
  *3.) we will implement our own list
  */
 
+/** map starts */
 trait MyTransformer[-A, +B] { //todo: why -, + //
   def transform(input: A): B // Transforms type A to type B.
 }
+
+class IntToBooleanTransformer extends MyTransformer[Int, Boolean] { // Transform Int to Boolean
+  override def transform(input: Int): Boolean = {
+    input > 2
+  }
+}
+
+class IntToIntTransformer extends MyTransformer[Int, Int] { // Transform Int to Boolean
+  override def transform(input: Int): Int = input * input
+}
+
+class IntToStringTransformer extends MyTransformer[Int, String] {
+  override def transform(input: Int): String = {
+    if(input % 2 == 0) "Fizz" else "Buzz"
+  }
+}
+
+class DoubleToIntTransformer extends MyTransformer[Double, Int]{
+  override def transform(input: Double): Int = input.toInt
+}
+/** map ends */
 
 /*trait MyPredicate[-A]  {
 
@@ -27,15 +49,7 @@ class PositiveFilter extends MyPredicate[Int] {
   def check(x: Int) = x > 0
 }*/
 
-class IntToBooleanTransformer extends MyTransformer[Int, Boolean] { // Transform Int to Boolean
-  override def transform(input: Int): Boolean = {
-     input > 2
-  }
-}
 
-class IntToIntTransformer extends MyTransformer[Int, Int] { // Transform Int to Boolean
-  override def transform(input: Int): Int = input * input
-}
 
 abstract class MyList[+A] { //todo: why +
   def head: A
@@ -71,15 +85,28 @@ object ConstructList extends App {
 
   val o = new EmptyList
 
-  val myList: MyList[Int] = new ::(1 , new ::(2, new :: (3, new ::(4, new EmptyList))))
-  println(myList + " -----------> myList")
+  val myDoubleList: MyList[Double] = new ::(1.1 , new ::(2.1, new :: (3.1, new ::(4.1, new EmptyList))))
+  val myIntList: MyList[Int] = new ::(1 , new ::(2, new :: (3, new ::(4, new EmptyList))))
+  println(myIntList + " -----------> myList")
+  println(myIntList.head + " -----------> head")
+  println(myIntList.tail + " -----------> tail")
 //  val transformIntToBool = new IntToBooleanTransformer
 
-  val booleanList: MyList[Int] = myList.map(new IntToIntTransformer)
+  /** map starts*/
+  val intToIntList: MyList[Int] = myIntList.map(new IntToIntTransformer)
+  val intToBooleanList: MyList[Boolean] = myIntList.map(new IntToBooleanTransformer)
+  val intToStringList: MyList[String] = myIntList.map(new IntToStringTransformer)
+  val doubleToIntList: MyList[Int] = myDoubleList.map(new DoubleToIntTransformer)
 
-  println(booleanList + " -----------> Transformed myList")
+  println(intToIntList + " -----------> Transformed IntList to Int list")
   println()
-
+  println(intToBooleanList + " -----------> Transformed IntList to boolean list")
+  println()
+  println(intToStringList + " -----------> Transformed IntList to String list")
+  println()
+  println(doubleToIntList + " -----------> Transformed DoubleList to Int list")
+  println()
+  /** map ends*/
 
   val elements = List(List(1, 2, 3), List(4, 5, 6))
   elements.flatMap(x => x.map(y => print(y + " ")))
