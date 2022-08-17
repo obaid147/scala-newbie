@@ -27,7 +27,6 @@ class IntToBooleanTransformer extends MyTransformer[Int, Boolean] { // Transform
     input > 2
   }
 }
-
 class IntToStringTransformer extends MyTransformer[Int, String] {
   override def transform(input: Int): String = {
     if(input % 2 == 0) "Fizz" else "Buzz"
@@ -51,11 +50,11 @@ class CheckEven extends MyPredicate[Int] {
 }/** filter ends */
 
 /** flatMap Starts*/
-trait MyTransformer2[-A, +B] { //todo: why -, + //
-  def transform(input: A): MyList[B] // Transforms type A to type B.
+trait MyTransformer2[-A, +B] {
+  def transform(input: A): MyList[B]
 }
-class IntToIntTransforme2r extends MyTransformer2[Int, Int] { // Transform Int to Boolean
-  override def transform(input: Int):MyList[Int] = new ::(input, new EmptyList)
+class IntToIntTransformer2r extends MyTransformer2[Int, Int] {
+  override def transform(input: Int):MyList[Int] = new ::(input, new EmptyList) // ::[Int]
 }
 /** flatMap Ends */
 
@@ -88,19 +87,15 @@ class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A
       new ::(head, tail.filter(predicate))
      } else tail.filter(predicate)
    }
+   /** predicate -> CheckEven...
+    * if CheckEven.check(1) False -> tail.filter(predicate) moving forward
+    * if CheckEven.check(2) True  -> :: have 2 -> tail.filter(predicate)
+    * if CheckEven.check(3) False -> tail.filter(predicate)
+    * if CheckEven.check(4) True  -> :: will have 2, 4 -> tail.filter(predicate)
+    * if CheckEven.check(5) False -> tail.filter(predicate) ---> Nil
+    */
 
-
-//    new ::(predicate.check(head), tail.filter(predicate))
-
-    /*def rec(xs: MyList[A], acc: MyList[Int], f: Boolean): MyList[Int] = xs match {
-      case Nil => acc
-      case h :: t =>
-        if (f) rec(t, acc :+ h, predicate.check(h)) else rec(t, acc, predicate.check(h))
-    }
-    rec(new::(head, tail), Nil:List[A], predicate.check(head))
-  }*/
 }
-//        if (f(h)) rec(tail, acc :+ head) else rec(tail, acc) on case h :: t=>
 // CLass EmptyList
 class EmptyList extends MyList[Nothing] {
   def head: Nothing = throw new Exception("empty.head")
@@ -145,7 +140,12 @@ object ConstructList extends App {
   /** filter starts*/
     val myEvenFilterList = myIntList.filter(new CheckEven)
     println(myEvenFilterList + "-------------------> FILTER Even")
-/** filter ends*/
+  /** filter ends*/
+
+  /** flatMap starts*/
+   /** flatMap ends*/
+
+
 
 }
 
