@@ -31,3 +31,50 @@ val list = List(2, 3, 4)
 def f(x: Int) = List(x-1, x, x+1)
 
 val res = list.flatMap(y => f(y))
+
+//------------------More Operations-----------------------
+
+def toInt(s: String): Option[Int] = {
+  try{
+    Some(Integer.parseInt(s.trim))
+  }catch{
+    case _: Exception => None
+  }
+}
+toInt("Obaid")
+toInt("123")
+
+val strings: Seq[String] = Seq("1", "2", "foo", "3", "bar")
+
+strings.map(toInt)// toInt parameters is a Seq of Strings now...
+strings.map(x => toInt(x)) // syntactic sugar above
+strings.flatMap(toInt) // take out type from Some()
+strings.flatMap(toInt).sum
+
+// using map and flatten to do the same
+val mapper = strings.map(toInt)
+mapper.flatten
+mapper.flatten.sum
+
+//------ Method that takes single Int parameter and returns 3 ints.
+val l = List(1 ,2, 3, 4, 5)
+def g(v: Int) = List(v-1,v, v+1)
+l.map(g)
+l.map(g).flatten
+l.flatMap(g)
+
+//---
+val map = Map(1 -> "one", 2 -> "two", 3 -> "three")
+1 to map.size flatMap map.get
+1 to map.size map map.get
+1 to map.size flatMap(map.get(_))
+
+// --------
+val chars = 'a' to 'z'
+
+val perms = chars flatMap { a =>
+  chars flatMap{ b =>
+    if(a != b) Seq("%c%c".format(a, b))
+    else Seq()
+  }
+}
