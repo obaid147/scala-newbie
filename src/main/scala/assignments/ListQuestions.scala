@@ -3,12 +3,14 @@ import scala.runtime.Nothing$
 
 /**
  * 1.) how to transpose a matrix
- *
- *  1 2 3
- *  4 4 4
- *  9 8 7
+ * lists(1,2,3, List(4,4,4), List(9,8,7))
+ *  1 2 3     1 4 9
+ *  4 4 4 ==> 2 4 8
+ *  9 8 7     3 4 7
  *
  *2.) how to multiply a matrix
+ *
+ *
  *
  *
  *3.) we will implement our own list
@@ -66,8 +68,8 @@ abstract class MyList[+A] { //todo: why +
   def toString: String
   def map[B](transformer: MyTransformer[A, B]): MyList[B]
   def filter(predicate: MyPredicate[A]): MyList[A]
-//  def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B]
-
+ // def foreach(f: A => Unit):Unit = ???
+//  def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B] // ++
 }
  // Class ::()
 class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A] {
@@ -87,14 +89,6 @@ class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A
       new ::(head, tail.filter(predicate))
      } else tail.filter(predicate)
    }
-   /** predicate -> CheckEven...
-    * if CheckEven.check(1) False -> tail.filter(predicate) moving forward
-    * if CheckEven.check(2) True  -> :: have 2 -> tail.filter(predicate)
-    * if CheckEven.check(3) False -> tail.filter(predicate)
-    * if CheckEven.check(4) True  -> :: will have 2, 4 -> tail.filter(predicate)
-    * if CheckEven.check(5) False -> tail.filter(predicate) ---> Nil
-    */
-
 }
 // CLass EmptyList
 class EmptyList extends MyList[Nothing] {
@@ -105,6 +99,8 @@ class EmptyList extends MyList[Nothing] {
 
   override def map[B](transformer: MyTransformer[Nothing, B]): MyList[B] = new EmptyList
   override def filter(predicate: MyPredicate[Nothing]): MyList[Nothing] = new EmptyList
+
+//  override def flatMap[B](transformer: MyTransformer2[Nothing, B]): MyList[B] = new EmptyList
 }
 
 object ConstructList extends App {
