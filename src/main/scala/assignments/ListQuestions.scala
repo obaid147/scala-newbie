@@ -100,6 +100,7 @@ class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A
        transformer transform head
      }
      else {
+       println(transformer transform head)
        tail flatMap transformer
      }
    }
