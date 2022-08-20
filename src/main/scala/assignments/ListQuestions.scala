@@ -1,6 +1,3 @@
-import scala.:+
-import scala.runtime.Nothing$
-
 /**
  * 1.) how to transpose a matrix
  * lists(1,2,3, List(4,4,4), List(9,8,7))
@@ -15,7 +12,6 @@ import scala.runtime.Nothing$
  *
  *3.) we will implement our own list
  */
-
 /** map starts */
 trait MyTransformer[-A, +B] { //todo: why -, + //
   def transform(input: A): B // Transforms type A to type B.
@@ -53,11 +49,19 @@ class CheckEven extends MyPredicate[Int] {
 
 /** flatMap Starts*/
 trait MyTransformer2[-A, +B] {
-  def transform(input: A): MyList[B]
+  val transform:A => MyList[B]
 }
-class IntToIntTransformer2r extends MyTransformer2[Int, Int] {
-  override def transform(input: Int):MyList[Int] = new ::(input, new EmptyList) // ::[Int]
+//class IntToIntTransformer2r extends MyTransformer2[Int, Int] {
+//  override def transform(input: Int): MyList[Int] = new ::(input, new EmptyList)
+//  /* new ::(1 , new ::(2, new :: (3, new EmptyList)))*/
+//}
+
+class NumAndNumMinusOne extends MyTransformer2[Int, Int]{
+//  override def transform(input: Int): MyList[Int] = new ::(input, new ::(input-1, new EmptyList))
+  val transform: Int => MyList[Int] = input => new ::(input, new ::(input-1, new EmptyList))
+
 }
+
 /** flatMap Ends */
 
 // abs class MyList[]
@@ -69,7 +73,7 @@ abstract class MyList[+A] { //todo: why +
   def map[B](transformer: MyTransformer[A, B]): MyList[B]
   def filter(predicate: MyPredicate[A]): MyList[A]
  // def foreach(f: A => Unit):Unit = ???
-//  def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B] // ++
+  def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B] // ++
 }
  // Class ::()
 class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A] {
@@ -89,7 +93,15 @@ class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A
       new ::(head, tail.filter(predicate))
      } else tail.filter(predicate)
    }
-}
+
+   override def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B] = {
+     if(tail.isEmpty)
+       transformer.transform(head)
+     else {
+       tail.flatMap(transformer)
+     }
+   }
+ }
 // CLass EmptyList
 class EmptyList extends MyList[Nothing] {
   def head: Nothing = throw new Exception("empty.head")
@@ -100,7 +112,7 @@ class EmptyList extends MyList[Nothing] {
   override def map[B](transformer: MyTransformer[Nothing, B]): MyList[B] = new EmptyList
   override def filter(predicate: MyPredicate[Nothing]): MyList[Nothing] = new EmptyList
 
-//  override def flatMap[B](transformer: MyTransformer2[Nothing, B]): MyList[B] = new EmptyList
+  override def flatMap[B](transformer: MyTransformer2[Nothing, B]): MyList[B] = new EmptyList
 }
 
 object ConstructList extends App {
@@ -136,11 +148,17 @@ object ConstructList extends App {
   /** filter starts*/
     val myEvenFilterList = myIntList.filter(new CheckEven)
     println(myEvenFilterList + "-------------------> FILTER Even")
+    println()
   /** filter ends*/
 
   /** flatMap starts*/
-   /** flatMap ends*/
-
+//    val p = myIntList.flatMap(new IntToIntTransformer2r)
+//    println(p)
+    val myIntList1: MyList[Int] = new ::(1 , new ::(2, new EmptyList))
+    println("-"*20)
+    val numMinus1 = myIntList1.flatMap(new NumAndNumMinusOne)
+    print(numMinus1)
+  /** flatMap ends*/
 
 
 }
@@ -149,9 +167,5 @@ object ConstructList extends App {
 // No parameters
 // Single Instance
 
-
-
-
-//
 
 
