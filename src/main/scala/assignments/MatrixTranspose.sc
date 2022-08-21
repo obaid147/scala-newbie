@@ -45,30 +45,42 @@ elements.map(x => x.head).head
 elements.map(x => x.tail)
 
 
-val elements1 = List(List(1, 2, 3))//,
-//                      List(4, 5, 6),
-//                      List(7, 8, 9))
+val elements1 = List(List(1, 2, 3),List(4, 5, 6))
+val elements2 = List(List(10, 11),List(12, 13), List(14, 15))
+var xs3 = Array.ofDim[Int](2, 2)
 
-val elements2 = List(List(10, 11, 12))//,
-//                      List(13, 14, 15),
-//                      List(16, 17, 18))
+def multi(xs1: List[List[Int]],
+          xs2: List[List[Int]]) = {
 
-println("First Matrix\n" + elements1)
-println("First Matrix\n" + elements2)
-
-def multi(xs1: List[List[Int]], j: Int,
-          xs2: List[List[Int]], m: Int): Any = {
-  if(m < xs1.length){
-    print(xs1.head(j) * xs2.head(m) + " ")
-    multi(xs1, j, xs2, m+1)
-  }
-  else {
-    if(j < xs1.length) {
-      println()
-      multi(xs1, j + 1, xs2, m = 0)
+  var i = 0
+  while (i < xs1.length) {
+    var j = 0
+    while (j < xs1.length) {
+      var sum = 0
+      var k = 0
+      while (k <= xs1.length) {
+        sum = sum + (xs1(i)(k) * xs2(k)(j));
+        k = k + 1
+      }
+      println(sum + " ------ sum")
+      xs3(i)(j) = sum
+      j = j + 1
     }
-    else xs1.head(j) * xs2.head(m)
+    i = i + 1
   }
+
+  printf("Multiplication of Matrix1 and Matrix2:\n")
+  i = 0;
+  while (i < xs1.length) {
+    var j = 0;
+    while (j < xs1.length) {
+      print(xs3(i)(j) + " ");
+      j = j + 1;
+    }
+    i = i + 1;
+    println();
+  }
+
 }
-multi(elements1, 0, elements2, 0)
+multi(elements1, elements2)
 
