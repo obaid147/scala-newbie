@@ -7,7 +7,6 @@ import scala.util.Random
 
 object GenerateARandomList {
   def returnRandomList(n: Int): List[Int] = List.fill(n)(Random.nextInt())
-
 }
 
 object GenerateARandomTupleList {
@@ -20,16 +19,15 @@ object GenerateARandomTupleList {
 object ListIsInAscendingOrder extends App {
 
   val l =  (1 to 10).toList
-  val randomList =  GenerateARandomList.returnRandomList(10)
+  println(GenerateARandomList.returnRandomList(10))
 
-   val l2 = l.splitAt(5)
+  val l2 = l.splitAt(5)
   val l3 = l2._1 ++ List(33) ++ l2._2
   println(l3)
 
-
   val bool = l3.zip(l3.tail).forall( tup => tup._1 < tup._2)
   println(bool)
-  println(GenerateARandomTupleList.returnRandomListTuple(10))
+  println(GenerateARandomTupleList.returnRandomListTuple(10).take(5))
 
 
 }

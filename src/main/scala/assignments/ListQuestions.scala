@@ -73,6 +73,7 @@ abstract class MyList[+A] { //todo: why +
   def map[B](transformer: MyTransformer[A, B]): MyList[B]
   def filter(predicate: MyPredicate[A]): MyList[A]
  // def foreach(f: A => Unit):Unit = ???
+  def foreach[B](f: A => B): Unit
   def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B] // ++
 }
  // Class ::()
@@ -104,6 +105,17 @@ class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A
        tail flatMap transformer
      }
    }
+
+   override def foreach[B](f: A => B): Unit = {
+     if(tail.isEmpty) {
+       print(head + " ")
+     }
+     else {
+       print(head + " ")
+       tail foreach println
+     }
+   }
+
  }
 // CLass EmptyList
 class EmptyList extends MyList[Nothing] {
@@ -116,6 +128,8 @@ class EmptyList extends MyList[Nothing] {
   override def filter(predicate: MyPredicate[Nothing]): MyList[Nothing] = new EmptyList
 
   override def flatMap[B](transformer: MyTransformer2[Nothing, B]): MyList[B] = new EmptyList
+
+  override def foreach[B](f: Nothing => B): Unit = new EmptyList
 }
 
 object ConstructList extends App {
@@ -157,11 +171,17 @@ object ConstructList extends App {
   /** flatMap starts*/
 //    val p = myIntList.flatMap(new IntToIntTransformer2r)
 //    println(p)
-    val myIntList1: MyList[Int] = new ::(1 , new ::(2, new EmptyList))
-    println("-"*20)
-    val numMinus1 = myIntList1.flatMap(new NumAndNumMinusOne)
+    val myIntListFlat: MyList[Int] = new ::(1 , new ::(2, new EmptyList))
+    println("-------- flatMap ---------")
+    val numMinus1 = myIntListFlat.flatMap(new NumAndNumMinusOne)
     print(numMinus1)
+    println()
   /** flatMap ends*/
+
+  /** foreach starts*/
+  println("--------foreach--------")
+  myIntList foreach println
+  /** foreach ends*/
 
 
 }
