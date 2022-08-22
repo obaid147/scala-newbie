@@ -22,9 +22,11 @@
 
  *  Assume - Stating an Axiom:-
     assume(), on the other hand, is used to reduce the load on the
-    static analyser. It works locally to develop a divide-and-rule
-    mechanism to help the analyzers to assume a condition and go
-    through checking the code.
+    static analyser (debugging that is done by examining the code
+    without executing the program.)
+    It works locally to develop a divide-and-rule mechanism to help
+    the analyzers to assume a condition and go through checking the
+    code.
  * */
 //assert(2 > 3)
 //assume(2 > 3)
