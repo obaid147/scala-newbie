@@ -55,3 +55,25 @@ class TestingMockDemo extends FunSpec with Matchers with MockFactory{
     }
   }
 }
+ // --------------- Advantages of Scala Mock
+/**
+ * Mocks allow full scripting of responses (including failures).
+ * They also verify calls are made, in the correct quantity
+ * (e.g. fail if too many or few)
+
+ */
+class AdvantagesMockDemo extends FunSpec with Matchers with MockFactory {
+  describe("Throwing exception instead of accepting parameters"){
+    it("should not call getWeather if operational throws an exception"){
+      val mockWs = mock[WeatherService]
+
+      (mockWs.operational _: () => Boolean).expects().
+        throws(new IllegalStateException("network failure"))
+
+      val ex = intercept[IllegalStateException]{
+        testScalaMock.lookupWeather(mockWs, "PDX")
+      }
+      ex.getMessage should be ("network failure")
+    }
+  }
+}
