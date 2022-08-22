@@ -73,7 +73,7 @@ abstract class MyList[+A] { //todo: why +
   def map[B](transformer: MyTransformer[A, B]): MyList[B]
   def filter(predicate: MyPredicate[A]): MyList[A]
  // def foreach(f: A => Unit):Unit = ???
-  def foreach[B](f: A => Unit): Unit
+  def foreach(f: A => Unit): Unit
   def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B] // ++
 }
  // Class ::()
@@ -105,7 +105,7 @@ class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A
        tail flatMap transformer
      }
    }
-   override def foreach[B](f: A => Unit): Unit = {
+   override def foreach(f: A => Unit): Unit = {
       f(head)
      tail.foreach(f)
    }
@@ -123,7 +123,7 @@ class EmptyList extends MyList[Nothing] {
 
   override def flatMap[B](transformer: MyTransformer2[Nothing, B]): MyList[B] = new EmptyList
 
-  override def foreach[B](f: Nothing => Unit): Unit = ()
+  override def foreach(f: Nothing => Unit): Unit = ()
 }
 
 object ConstructList extends App {
