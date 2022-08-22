@@ -1,0 +1,21 @@
+/**Testing took over from pre-conditions, post-conditions
+ * and invariants in most development
+  Scala has various testing frameworks:
+  JUnit
+  TestNG
+  Specs2
+  Scalatest
+In the course so far, we have been using Scalatest
+Scalatest supports many styles of testing and offers many features*/
+
+// --------------- Scalatest ------------------------
+/**
+ * Scalatest is a free, open source testing framework that is well documented and widely used.
+ * It supports many different styles of tests:
+    * http://www.scalatest.org/user_guide/selecting_a_style
+ * We will concentrate on a couple of styles:
+      FunSuite - very similar to the koans style you have been using throughout the couse
+      FunSpec - a more BDD influenced suite for writing specifications
+We will also look at the Matchers DSL and support for mocking and property testing
+Keep the http://www.scalatest.org/user_guide handy to write your own
+(there is lots here)*/

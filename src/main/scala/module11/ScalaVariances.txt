@@ -1,0 +1,28 @@
+https://www.geeksforgeeks.org/scala-variances/#:~:text=Invariant%3A%20In%20Scala%2C%20generic%20types,fall%20under%20the%20invariant%20type.&text=Here%2C%20we%20don't%20use%20any%20symbol%20for%20invariant%20relationship.
+            ---------------------Scala Variances-------------------------
+            1. Covariant
+            2. Contravariant
+            3. Invariant
+
+1. Covariant:-
+If a generic class has a type parameter T, then its Covariant notation will be [+T]. Suppose, we have two List types of
+    Scala i.e, S and T. where, S is subtype of T, then you can say that List[S] is also the subtype of List[T].
+    If two types are related like this then they fall under the Covariant type. List[T] can be called as Generic.
+   Syntax:
+   List[+T]
+
+
+2. Contravariant:
+If a generic class has a type parameter T, then its Contravariant notation will be [-T]. Suppose, we have two List
+    types of Scala i.e, S and T. where, S is sub-type of T, but List[T] is the subtype of List[S]. If two types are
+    related like this then they fall under the Contravariant type. It is opposite of covariant.
+  Syntax:
+  List[-T]
+
+3. INVARIANT condition:-
+Invariant: In Scala, generic types are by default invariant. Suppose, we have two List types of Scala i.e, S and T.
+    where, S is subtype of T but List[T] and List[S] are not at all related, then they fall under the invariant type.
+    Syntax: List[T]
+
+Note: The classes like Array[T], ListBuffer[T], ArrayBuffer[T] etc. are mutable so, they have invariant type parameter,
+If we use invariant type parameters in inheritance relationship or sub-typing then we will get a compilation error.
