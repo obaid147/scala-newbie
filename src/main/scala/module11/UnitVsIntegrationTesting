@@ -1,0 +1,10 @@
+// Unit vs Integration Testing
+
+1. Unit tests are small, self contained and fast, requiring no external resources.
+1. Integration tests may use external resources, and are useful for checking a complete system.
+
+2. Neither type of testing is enough without the other.
+
+3. To Unit test, one must often isolate from external resources.
+
+4. This is where fakes, mocks and stubs come in useful.
