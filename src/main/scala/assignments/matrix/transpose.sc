@@ -13,7 +13,7 @@ def printMatrix(matrix: Matrix): Unit = {
 
   matrix.foreach { outer =>
     outer.foreach{ inner =>
-      print(inner + "   ")
+      print(s"$inner        ")
     }
     println()
   }
@@ -26,7 +26,7 @@ def transpose(matrix: Matrix): Matrix = {
    }
 }
 
-val randomNumberGenerator: () => Int = () =>  new Random().nextInt(100)
+val randomNumberGenerator: () => Int = () =>  new Random().nextInt(90)
 val matrix = makeMatrix(3, 3)(randomNumberGenerator)
 printMatrix(matrix)
 println("====")
