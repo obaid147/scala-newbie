@@ -6,8 +6,8 @@ trait DBAccess{
   def load[T](id: String): Option[T]
 }
 
-class FakeDBAccess extends DBAccess{
-  private[this] var itemMap = Map.empty[String, Any]
+class FakeDBAccess(private[this] var itemMap:
+                   Map[String, Any]) extends DBAccess{
 
   override def save[T](item: T): String = {
     val uuid = UUID.randomUUID().toString
@@ -22,6 +22,6 @@ class FakeDBAccess extends DBAccess{
 
 case class Person(name: String, age: Int)
 
-val fake = new FakeDBAccess
-val uuid = fake.save(Person("obaid", 28))
+val fake = new FakeDBAccess(Map.empty[String, Any])
+val uuid = fake.save(Person("zak", 45))
 fake.load(uuid)
