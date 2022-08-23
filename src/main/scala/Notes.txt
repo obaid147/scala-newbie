@@ -2,3 +2,6 @@ type-checker
 type-error
 type-parameter
 type-erasure
+
+usage of ++
+val validChars = ('a' to 'z') ++ ('A' to 'Z') ++ (0 to 9)
