@@ -13,7 +13,7 @@ def printMatrix(matrix: Matrix): Unit = {
 
   matrix.foreach { outer =>
     outer.foreach{ inner =>
-      print(inner + " ")
+      print(inner + "   ")
     }
     println()
   }
@@ -34,9 +34,9 @@ printMatrix(transpose(matrix))
 //matrix.print
 
 def multiply(matrix1: Matrix, matrix2: Matrix): Matrix = {
-  (for(row <- matrix1)
-    yield (for(col <- transpose(matrix2))
-     yield (row.zip(col)).map(x => x._1 * x._2).sum))
+  for(row <- matrix1)
+    yield for(col <- transpose(matrix2))
+     yield row.zip(col).map(x => x._1 * x._2).sum
 }
 
 printMatrix(
