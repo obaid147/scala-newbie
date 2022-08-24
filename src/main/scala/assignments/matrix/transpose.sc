@@ -25,9 +25,15 @@ def transpose(matrix: Matrix): Matrix = {
      matrix.map(_.head) :: transpose(matrix.map(_.tail))
    }
 }
+val m = makeMatrix(3,3)(() => 1 + Random.nextInt(50))
+printMatrix(m)
+val t = transpose(m)
+printMatrix(t)
 
-val randomNumberGenerator: () => Int = () =>  new Random().nextInt(90)
+val randomNumberGenerator: () => Int = () =>  1 + new Random().nextInt(50)
+
 val matrix = makeMatrix(3, 3)(randomNumberGenerator)
+val transposeMatrix = transpose(matrix)
 printMatrix(matrix)
 println("====")
 printMatrix(transpose(matrix))
@@ -35,18 +41,28 @@ printMatrix(transpose(matrix))
 
 def multiply(matrix1: Matrix, matrix2: Matrix): Matrix = {
   for(row <- matrix1)
-    yield for(col <- transpose(matrix2))
+    yield for(col <- matrix2)
      yield row.zip(col).map(x => x._1 * x._2).sum
 }
 
+
+val matrix2 = makeMatrix(3, 3)(randomNumberGenerator)
+printMatrix(matrix2)
+
+val matrix1: Matrix = makeMatrix(3, 3)(randomNumberGenerator)
+printMatrix(matrix1)
+val transposeMatrix2: Matrix = transpose(matrix2)
+printMatrix(transposeMatrix2)
+
 printMatrix(
   multiply(
-    makeMatrix(3, 3)(randomNumberGenerator),
-    makeMatrix(3,3)(randomNumberGenerator)
+    matrix1,
+    transposeMatrix2
 )
 )
 
-val f: Int => Unit = x => println(x)
-List(1,2).foreach(f)
-
-
+val x: List[List[Int]] = for(row <- matrix1) yield{
+  for(col <- transposeMatrix2) yield {
+    row.zip(col).map(x => x._1 * x._2).sum
+  }
+}
