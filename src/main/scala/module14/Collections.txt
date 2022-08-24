@@ -1,0 +1,13 @@
+Scala has a rich hierarchy of collections in addition to List
+
+                            Traversable(trait)   SuperType
+
+                             iterable(trait) extends Traversable
+
+                 Seq            Set                   Map
+
+Seq, Set and Map are traits they extend iterable trait which extends Traversable trait......
+
+Seq -> Maintains order of insertion.
+Set -> Maintains uniqueness but not order (though may be sorted sometimes).
+Map -> is a Key -> value association, with unique keys.

@@ -1,0 +1,2 @@
+Sequences(Performance)
+https://docs.scala-lang.org/overviews/collections/performance-characteristics.html

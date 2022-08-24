@@ -1,0 +1,15 @@
+Seq maintains order of insertion
+Seq is further divided into two broad categories: LinearSeq and IndexedSeq
+
+1. LinearSeq is optimized for head-first. (eg:- List)
+1. IndexedSeq is optimized for random access. (eg:- Vector)
+
+2. Both List and Vector are immutable(cannot be changed).
+2. Both of these are widely used depends on below point:-
+
+If we know that we can work exclusively at head(eg: recursion) USE LIST.
+For anything else use Vector.
+
+For sheer performance, particularly with primitives, We sometime use Array:-
+    1. BUT Array is mutable with no thread safety.
+    2. Profile and prove a performance problem before using Array.
