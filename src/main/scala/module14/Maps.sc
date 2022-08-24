@@ -64,9 +64,9 @@ val values1 = Map(1 -> 1, 2 ->2, 3->3, 4->1).values
  * Map.filterKeys(fun) is deprecated.
  * Map.mapValues(fun) is deprecated.
  */
-numWords.view.filterKeys(_%2 == 0)//Not computed
+val x = numWords.filterKeys(_%2 == 0)//Not computed
 // expected filterKeys -> / Map(2 -> two, 4 -> four)
-numWords.view.mapValues(_.reverse)//Not computed
+numWords.mapValues(_.reverse)//Not computed
 // mapValues Map(1 -> eno, 2 -> owt, 3 -> eerht, 0 -> orez)
 numWords.transform{
   case (k, v) => s"$v($k)"
