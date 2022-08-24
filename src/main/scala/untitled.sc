@@ -24,6 +24,7 @@ fn2(2, 3)
 
 implicit val d2I: Double => Int = i => i.toInt
 d2I(x)
+doubleToInt(2.2)
 
 
 
