@@ -97,13 +97,10 @@ class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A
 
    override def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B] = {
      // usage of ++
-     if(tail.isEmpty) {
-       transformer transform head
-     }
-     else {
-       println(transformer transform head)
-       tail flatMap transformer
-     }
+
+//    transformer transform head
+     tail flatMap transformer
+     transformer transform head
    }
    override def foreach(f: A => Unit): Unit = {
       f(head)
