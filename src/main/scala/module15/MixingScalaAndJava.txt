@@ -1,0 +1,11 @@
+We use java libraries in scala.
+
+We some libraries make more sense than others.
+
+This includes persistence layers, web frameworks, numerical and
+scientific libraries, etc.
+
+Scala uses numerical and scientific libraries which are very useful.
+
+On the other hand, many of these have Scala wrappers around java libs, to make it more scala like.
+or we can write our own.  
