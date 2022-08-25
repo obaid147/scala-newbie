@@ -1,0 +1,51 @@
+// ----------------------build.sbt
+
+build.sby is the quickest way to get into sbt.
+SBT file uses a scala like DSL with a simplified dialect.
+
+Operators for .sbt file :-
+:= - set a value.
++= - add a value to existing set of values.
+++= - add a sequence of values to existing set of values.
+
+Blank lines between expressions are now optional.
+
+Can embed any standard Scala code in {}s
+
+//--------------------- Example build.sbt
+
+name := """scala-library-seed"""
+//It's perfect to name the project.
+
+organization := "com.example"
+//You probably want to mention the organization that is creating that project.
+
+
+licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
+//If there's licenses that are used, open source licenses or proprietary licenses,list those in the licenses setting,
+
+
+javacOptions ++= Seq("-source", "1.6", "-target", "1.6")
+//you can set options for the Java compiler.
+
+scalaVersion := "2.10.4"
+// you can set scala version
+
+crossScalaVersions := Seq("2.10.4", "2.11.2", "2.12.1") // this will cross compile all 3 mentioned versions & publish them
+// between major versions of Scala and by that we mean to top 2.10 to 2.11 to 2.12.
+//There is no requirement for there to be binary compatibility, unlike Java.
+//So basically jars that are built with 2.10, may not and probably will not work with 2.11 and 2.12 and so on.
+
+
+libraryDependencies ++= Seq(
+"org.scalatest" %% "scalatest" % "2.2.1" % "test"
+)
+// organization %% artifact name % version of artifact % scope it is in.
+
+bintraySettings
+com.typesafe.sbt.SbtGit.versionWithGit
+//These 2 down at the bottom are just showing some of the settings that you can make from third party plug ins.
+//And when you use those plug ins, when you find them and use them, download them off GitHub, they'll tell you
+//what needs to go into the SBT file to be able to use them.
+
+Next======= plugins.sbt
