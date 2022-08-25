@@ -1,0 +1,65 @@
+SBT -> Scala Build Tool is a default building tool for scala.
+ sbt was the first build tool that was specifically created for Scala,
+ and these days it’s supported by Lightbend, the company that was co-founded
+ by Scala creator Martin Odersky that also maintains
+ Akka, the Play web framework, and more.
+
+ It offers very aggressive optimization for compiling and also testing.
+ It gas tilde mode, that  enables kind of continuous monitoring of files
+    re compilation as they change and then if needed, rerunning of the tests.
+ It is free, Open source, download from scala-sbt.org
+
+---------------------------- Creating hello world sbt project
+mkdir HelloWorld
+cd HelloWorld
+mkdir -p src/{main,test}/{java,resources,scala}
+mkdir project target
+
+create a build.sbt file and add below things
+
+name := "learning" // := means setting name as learning
+version := "0.1"
+scalaVersion := "2.13.8"
+
+// += means add/append dependency to libraryDependencies.
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8"
+libraryDependencies += "org.scalamock" %% "scalamock" % "5.1.0"
+libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.14.1"
+// These dependencies will grow as project grows.
+
+............................. Sbt in terminal
+goto location where .sbt file is saved, the open terminal there...
+type sbt and hit enter... wait till it loads...
+sbt: learning> help
+// help is a command that will show us the commands for sbt....eg:- task
+sbt: learning> task
+the task command will prompt a list of tasks defined for the current project.
+..example :- test, update(forces to update dependencies and forces them to be downloaded if needed),
+
+We can also see what projects there are using projects command
+sbt: learning> projects
+We get the information about our projects...There can be 1 or multiple...
+[info] In file:/D:/scala-newbie/
+[info]   * scala-newbie
+Projects lists the sub_projects.
+If we want to work on a particular project, we can use
+sbt: learning> projects subproject/module name
+
+Press ctrl+d that will take us out of the sbt command line...
+
+// --------------------------------- Common SBT commands
+clean -: will clean out any previous work that is done.
+compile -: will compile main sources.
+project -: shows us the projects we have and can switch to a particular project.
+test and test:compile -:
+it:compile -: if we have integration tests, that will not only compile main source but also test sources.
+publish, publish-local & publish-signed -:
+console and test:console -: console will give us scala REPL. It will give all the classpath and all class we have in our project.
+                            test:console will give all classpath items and all test files and test dependencies.
+
+~ tilde commands -: when running this command of we make change in any of our tests and hit ctrl+s, it will recompile automatically.
+                    to get out of this, hit enter.
+
+search for scala g8 projects for templates of new scala projects.
+e.g.: sbt new scala/scala-seed.g8
+seed is standard one, we can also find akka, play and many others....
