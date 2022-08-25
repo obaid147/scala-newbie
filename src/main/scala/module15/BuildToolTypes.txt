@@ -1,0 +1,48 @@
+1. Maven:-
+    A talk on build tools cannot be complete without Maven.
+    Which is mostly used build tool.
+
+    -> Maven has good support for scala building since zinc came along.
+            Uses zinc for incremental compilation.
+    -> Maven has support for all sort of languages.
+
+    -> Fast to create Scala Projects:-
+        mvn archetype:generate
+        mvn clean test
+        Spark is one of the library.
+    -> Many archetypes including Scala, Akka, Play....etc
+
+2. Gradle:-
+    Another popular toll that's been making inroads is greater and greater again has good polyglots support.
+
+    Gradle uses a domain specific language for building written in Groovy and it has a plug in for Scala.
+
+    It's also got zinc, which is the incremental compiler support.
+
+    And it's a lot of people like Gradle very much.
+
+    if you're already using Gradle and you want to include Scala in the belt, it's easy to do.
+
+    Scala plugin: apply plugin: 'scala'
+
+    DSL in Groovy(Domain specific language)
+    Support for Zinc:
+        tasks.withType(ScalaCompile) {
+        scalaCompileOptions.useAnt = false
+        }
+    Dependency management:
+        dependencies {
+        testCompile "org.scala-lang:scala-library:2.12.1"
+        }
+
+3. Other Options:-
+    -> Pants: Twitter’s Open Source Build Tool
+        Python DSL
+        http://pantsbuild.github.io/
+    -> Apache Buildr
+        Ruby DSL
+        http://buildr.apache.org/
+    -> Ant
+        XML DSL :-)
+        http://tutorials.jenkov.com/scala/compiling-with-ant.html
+    -> sbt
