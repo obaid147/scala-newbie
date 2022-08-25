@@ -1,0 +1,16 @@
+Multiple Module support
+
+Multiple projects can be defined in the same build.sbt file
+
+Assign project definitions to val's that represent the projects/objects
+
+
+
+
+lazy val util = project
+lazy val extras = project
+lazy val prod = project.dependsOn(util, extras)
+
+lazy val root = project.in(file("."))
+    .aggregate(util, extras, prod)
+    .settings(aggregate in update := false)
