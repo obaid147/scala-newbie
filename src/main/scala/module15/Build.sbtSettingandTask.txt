@@ -1,0 +1,49 @@
+/// difference between setting and task.
+1. A setting is like a val, for a single sbt run/build the setting is calculated, and it is assigned a value and that
+    value does not change again.
+
+1. A task is more like a function/method, It runs everytime it is referenced.
+   So, everytime we call a task, it will run it...
+
+2. Settings are used for configurations and Tasks are used for building actions.
+
+
+----------- sbt code
+val isAwesome = settingkey[Boolean]("some boolean setting")
+// our settings in this case are going to be boolean flag, that say whether it is awesome or not.
+
+isAwesome := true
+// and we are going to set that once we created "one of these(isAwesome)"
+// this becomes holder we can set using := += ++=
+// setting isAwesome to true.
+
+val totally = settingKey[String]("rating of totalness of the statement")
+
+totally := "100% totally"
+// same as above setting a string how totalness is there... set to 100%
+
+val totallyAwesome = settingKey[String]("How awesome is this project")
+
+totallyAwesome := totally.value +{
+  println("Checking project awesomeness")
+  if(isAwesome.value) "awesome" else "not awesome"
+}
+// This totallyAwesome uses isAwesome flag and totally flag to put this together.
+// totallyAwesome is set to := the value of totally(100 %) + and the {
+// where println is just a side effect.
+// if boolean flag is true then project is awesome else not awesome.
+//}
+
+// --------------- Task
+Settings are evaluated once per sbt run (like val)
+Tasks are evaluated once per build operation (like def)
+
+// Creating a task
+val checkAwesome = taskKey[Unit]("check project awesomeness") // returning unit. it has side effects anyways.
+checkAwesome := {
+    val _ = (compile in Test).value // force test:compile task
+    // we will not get to next line until this is completed.
+    println("Project is " + totallyAwesome.value)
+}
+// checkAwesome is the function here that will run.
+// We first force to compile first
