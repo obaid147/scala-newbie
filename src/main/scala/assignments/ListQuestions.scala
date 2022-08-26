@@ -49,17 +49,17 @@ class CheckEven extends MyPredicate[Int] {
 
 /** flatMap Starts*/
 trait MyTransformer2[-A, +B] {
-  val transform:A => MyList[B]
+  def transform(a: A) :MyList[B]
 }
 //class IntToIntTransformer2r extends MyTransformer2[Int, Int] {
 //  override def transform(input: Int): MyList[Int] = new ::(input, new EmptyList)
 //  /* new ::(1 , new ::(2, new :: (3, new EmptyList)))*/
 //}
 
-class NumAndNumMinusOne extends MyTransformer2[Int, Int]{
-//  override def transform(input: Int): MyList[Int] = new ::(input, new ::(input-1, new EmptyList))
-  val transform: Int => MyList[Int] = input => new ::(input, new ::(input-1, new EmptyList))
-
+class NumAndNumMinusOne extends MyTransformer2[Int, MyList[Int]]{
+  override def transform(a: Int): MyList[String] = {
+    new ::(a + " hi", new EmptyList)
+  }
 }
 
 /** flatMap Ends */
@@ -72,14 +72,37 @@ abstract class MyList[+A] { //todo: why +
   def toString: String
   def map[B](transformer: MyTransformer[A, B]): MyList[B]
   def filter(predicate: MyPredicate[A]): MyList[A]
- // def foreach(f: A => Unit):Unit = ???
   def foreach(f: A => Unit): Unit
-  def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B] // ++
+  def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B]
+  def ++[B >:A](l : MyList[B]):MyList[B]
+  def zip[B >: A, C](list: MyList[B], f: (A, B) => C): MyList[C]
 }
  // Class ::()
 class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A] {
+   /***  [1,2,8] ++ [3,4,5]
+    *  new Cons(1, new Cons(2, new Cons(8, new Cons(3, new Cons(4, new Cons(5, Empty)))); tail = [2,8]
+    *  new Cons(2, new Cons(8, new Cons(3, new Cons(4, new Cons(5, Empty))); tail = [8]
+    *  new Cons(8, new Cons(3, new Cons(4, new Cons(5, Empty)); tail = {} */
+   override def ++[B >: A](myList: MyList[B]): MyList[B] = {
+     new ::(head, tail.++(myList))
+   }
 
-  def isEmpty: Boolean = false
+   val f: (Int, String) => String = (a, b) => s"($a,$b)"
+   override def zip[B >: A, C](list: MyList[B], f: (A, B) => C): MyList[C] = {
+
+     val typeA: A = head
+     val listA: MyList[A] = tail
+     val typeB: B = list.head
+     val listB: MyList[B] = list
+     val listB: MyList[B] = list.tail
+     val typeC: C = f(head, list.head)
+     val listC: MyList[C] = new :: (list.head, tail.zip(list, f(head, list)))
+//     val listC: MyList[C] = new :: (list.head, tail.zip(list, f(head, list.head)))
+
+     listC
+   }
+
+   def isEmpty: Boolean = false
   override def toString: String = {
     if(tail.isEmpty) head.toString else {
       head + ", " + tail.toString
@@ -95,13 +118,14 @@ class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A
      } else tail.filter(predicate)
    }
 
+   /**  [1,2,3].flatMap(f)
+        f(1) ++ "2 hi 3 hi"
+        f(2) ++ "3 hi"
+       "3 hi" ++ Empty.flatMap(f)*/
    override def flatMap[B](transformer: MyTransformer2[A, B]): MyList[B] = {
-     // usage of ++
-
-//    transformer transform head
-     tail flatMap transformer
-     transformer transform head
+     transformer.transform(head) ++ tail.flatMap(transformer)
    }
+
    override def foreach(f: A => Unit): Unit = {
       f(head)
      tail.foreach(f)
@@ -121,6 +145,10 @@ class EmptyList extends MyList[Nothing] {
   override def flatMap[B](transformer: MyTransformer2[Nothing, B]): MyList[B] = new EmptyList
 
   override def foreach(f: Nothing => Unit): Unit = ()
+
+  override def ++[B >: Nothing](myList: MyList[B]): MyList[B] = myList
+
+  override def zip[B >: Nothing, C](list: MyList[B], f: (Nothing, B) => C): MyList[C] = new EmptyList
 }
 
 object ConstructList extends App {
@@ -164,8 +192,8 @@ object ConstructList extends App {
 //    println(p)
     val myIntListFlat: MyList[Int] = new ::(1 , new ::(2, new EmptyList))
     println("-------- flatMap ---------")
-    val numMinus1 = myIntListFlat.flatMap(new NumAndNumMinusOne)
-    print(numMinus1)
+//    val numMinus1 = myIntListFlat.flatMap(new NumAndNumMinusOne)
+//    print(numMinus1)
     println()
   /** flatMap ends*/
 
@@ -173,7 +201,10 @@ object ConstructList extends App {
   println("--------foreach--------")
   myIntList foreach println
   /** foreach ends*/
+  val myStringList = new ::("A", new ::("B", new EmptyList))
 
+  val f: (Int, String) => Double = (a, _) => a + 2.2
+  myIntListFlat.zip(myStringList, f)
 
 }
 

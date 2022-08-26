@@ -83,4 +83,3 @@ def multi(xs1: List[List[Int]],
 
 }
 multi(elements1, elements2)
-
