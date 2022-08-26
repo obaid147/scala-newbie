@@ -9,13 +9,13 @@ trait DBAccess{
 class FakeDBAccess(private[this] var itemMap:
                    Map[String, Any]) extends DBAccess{
 
-  override def save[T](item: T): String = {
+  def save[T](item: T): String = {
     val uuid = UUID.randomUUID().toString
     itemMap += (uuid -> item)
     uuid
   }
 
-  override def load[T](id: String): Option[T] = {
+  def load[T](id: String): Option[T] = {
     Try(itemMap(id).asInstanceOf[T]).toOption
   }
 }
