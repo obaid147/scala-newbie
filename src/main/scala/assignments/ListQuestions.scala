@@ -1,3 +1,4 @@
+/*
 /**
  * 1.) how to transpose a matrix
  * lists(1,2,3, List(4,4,4), List(9,8,7))
@@ -214,3 +215,4 @@ object ConstructList extends App {
 
 
 
+*/
