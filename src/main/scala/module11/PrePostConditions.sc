@@ -37,6 +37,8 @@ val x: Int = 2
 //assert(x > 3, "x must be larger than 3")
 //assume(x > 3, "x must be larger than 3")
 //(x - 1) ensuring (_ > 3, "x is not greater than 3")
+// scala -Xdisable-assertions using this we prevent assert and assume
+// to throw an exception, but ensuring till throws
 
 def square(x: Int): Int = {
   x * x
