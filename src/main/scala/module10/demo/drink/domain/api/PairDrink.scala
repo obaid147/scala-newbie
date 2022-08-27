@@ -1,7 +1,8 @@
 package module10.demo.drink.domain.api
 
-//import module10.demo.food._
+import module10.demo.food._ // once we bring food._ we can use the nelow import
 /**import module10.demo.food._ brings in the domain package from there*/
+import domain.api.Dessert // because of the above food._ we can bring in Dessert
 
 import _root_.module10.Logger
 /**To import domain.Logger, we need to use import _root_. to force Scala to
@@ -12,7 +13,6 @@ import module10.demo.drink.domain.internal.ParingDB
 mean starting from domain in demo.food. We have to use
 import module10.demo.wine.domain.internal.PairingDB */
 
-import module10.demo.food.domain.api.Dessert
 /**import module10.demo.food.domain.api.Dessert references that domain from demo.food*/
 
 
