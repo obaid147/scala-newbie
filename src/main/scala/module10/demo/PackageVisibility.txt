@@ -1,0 +1,22 @@
+1. Private(means private to the class only) and Protected(means private to the class and anything that extends private class)
+    private and protected access modifiers covers the visibility within the instance and subclasses.
+
+2. Package scoping in handled with [super-package] after one of these keywords private or protected.
+    eg1:- module10.demo.food.domain.internal.FoodDB.scala
+
+3. The Super-package must be one of the parent packages, or we will get compile error.
+    As domain is super package to internal eg1: point2
+   This allows us to control visibility but still have freedom in organizing sub packages.
+
+4. This is a Scala language specific feature, until compatibility with Java super-packages is implemented,
+    package-scoped items are public when accessed from Java!
+
+5. It cannot be accessed even from the companion object or another instance of this class. It is the
+   only visibility modifier in Scala that does not have accessor methods created.
+   eg:- companion object of a class has the accessor methods to implement private members of a class.
+
+NOTE:-
+* When we create a val or a var in scala, If that is anything except private[this].
+    What actually happens is a private[this] field is created,
+    then accessor methods "def's" are created with the specified access.
+    Even if it is private, we will get a PRIVATE[this] and then we get a private[def] also
