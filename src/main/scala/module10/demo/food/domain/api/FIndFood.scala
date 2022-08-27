@@ -1,7 +1,7 @@
 package module10.demo.food.domain.api
+import module10.demo.food.domain.allFoods
 
-import module10.demo.food.domain.internal.FoodDB
-
-object FindFood{
-  def lookupFood(name: String): Option[Dessert] = FoodDB.lookupDessert(name)
+class FindFood{
+  def lookupFood(name: String): Option[Dessert] = allFoods.lookupDessert(name)
+//  def lookupFood(name: String): Option[Dessert] = FoodDB.lookupDessert(name)
 }
