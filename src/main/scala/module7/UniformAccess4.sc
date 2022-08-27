@@ -1,3 +1,5 @@
+import module10.Person
+
 import java.time.LocalDate
 
 // ---- val override def

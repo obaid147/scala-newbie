@@ -17,11 +17,11 @@ case class Car(name: String, age: Int) extends CompareAge[Car] {
   }*/
 }
 
-case class Person(name: String, age: Int) extends CompareAge[Person] {
+case class Person(name: String, age: Int) extends CompareAge[module10.Person] {
 
   //private[this] val checkPrivateThisScope = true
 
-  def older(person: Person) = {
+  def older(person: module10.Person) = {
     if(person.age < this.age) person else this
   }
 
@@ -44,7 +44,7 @@ val car2 =  Car("mercedes", 2001)
 
 compareAge[Car](car1, car2)
 
-val person1 = Person("aamir", 32)
-val person2 = Person("obaid", 28)
+val person1 = module10.Person("aamir", 32)
+val person2 = module10.Person("obaid", 28)
 
-compareAge[Person](person1, person2)
+compareAge[module10.Person](person1, person2)

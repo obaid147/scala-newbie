@@ -1,3 +1,4 @@
+
 def api: Any = 10
 
 //anti-pattern
@@ -20,7 +21,7 @@ def describeType(x: Any) = x match {
   case d: Double => d
   case s: String => s
   case c: Char => c
-  case p: Person => p
+  case p: module10.Person => p
   case _ => "Some other type"
 }
 

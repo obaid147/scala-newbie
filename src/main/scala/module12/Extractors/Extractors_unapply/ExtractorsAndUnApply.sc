@@ -1,8 +1,9 @@
+
 case class Person(first: String, last: String, age: Int)
 
-val p1 = Person("Obaid", "Fayaz", 28)
+val p1 = module10.Person("Obaid", "Fayaz", 28)
 
-Person.unapply(p1) // Option[Person]
+Person.unapply(p1) // Option[module10.Person]
 /**
  * unapply method extracts an object and
       returns back the attributes.

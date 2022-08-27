@@ -1,3 +1,5 @@
+import module10.Person
+
 /**
  * Strategy one: construct a Rational from an Int
  * Can use an auxiliary constructor for this:
@@ -32,11 +34,11 @@ val sumn = five + fifth // 5/1, 1/5
 
 // Another example ------------------------------------------------------------
 
-class Person(name: String, age: Int, city: String){ // Person
+class Person(name: String, age: Int, city: String){ // module10.Person
   override def toString: String = s"$name, $age, $city"
 
   def this(name: String, age: Int) = { // Can be replaced using factory method
-    this(name, age, "Srinagar") // B, call primary constructor Person
+    this(name, age, "Srinagar") // B, call primary constructor module10.Person
   }
 
   def this(city: String) = { // C, calls B
@@ -44,6 +46,6 @@ class Person(name: String, age: Int, city: String){ // Person
   }
 }
 
-val person = new Person("OBAID", 11, "SXR")
+val person = new module10.Person("OBAID", 11, "SXR")
 val person = new Person("Aamir", 12)
 val person = new Person("Kashmir")

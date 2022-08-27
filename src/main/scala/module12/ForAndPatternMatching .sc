@@ -1,3 +1,5 @@
+import module10.Person
+
 val numbers1 = List(1, 2, 3)
 val numbers2 = List(4, 5, 6)
 val n: List[Int] = for {
@@ -26,10 +28,10 @@ case class Person(name: String, phone: Option[String],
                   address: Option[Address])
 
 //////////////////////////////////////////////////////
-lazy val harry = Person("Harry", None, Some(Address(
+lazy val harry = module10.Person("Harry", None, Some(Address(
   "123 Little Whinging way", "SXR", Some("PN22 6RT"))))
 
-lazy val sally = Person("Sally", Some("321-222-3344"), None)
+lazy val sally = module10.Person("Sally", Some("321-222-3344"), None)
 ////////////////////////////////////////////////////
 lazy val sally2 = sally.copy(address = harry.address,
   phone = Some("321-333-2211"))

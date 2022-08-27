@@ -1,3 +1,4 @@
+
 case class Endorsement(name: String, skill: String)
 
 val endorsements = List(
@@ -36,14 +37,14 @@ val res = process(endorsements)
 case class Person(name: String, gender: String)
 
 val personList = List(
-  Person("aamir", "male"),
-  Person("nighat", "female"),
-  Person("obaid", "male")
+  module10.Person("aamir", "male"),
+  module10.Person("nighat", "female"),
+  module10.Person("obaid", "male")
 )
 
 case class TitledPerson(titledPerson: String)
 
-def processingPerson(list: List[Person]): List[TitledPerson] = {
+def processingPerson(list: List[module10.Person]): List[TitledPerson] = {
   list.foldLeft(List[String]()) { (acc, item) =>
 
     val gender = if (item.gender == "male") "Mr" else "Mrs"

@@ -54,9 +54,9 @@ object Person2{
 val p = Person2.apply("Obaid")
 
 /**
- * You type something like val p = Person("Fred")
- * The Scala compiler sees that there is no new keyword before Person
- * The compiler looks for an apply method in the companion object of the Person class that matches
+ * You type something like val p = module10.Person("Fred")
+ * The Scala compiler sees that there is no new keyword before module10.Person
+ * The compiler looks for an apply method in the companion object of the module10.Person class that matches
    the type signature you entered
  * If it finds an apply method, it uses it; if it doesn’t, you get a compiler error
  */

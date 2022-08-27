@@ -1,3 +1,4 @@
+
 abstract class Food {
    def shape: String
    def price: Int
@@ -34,8 +35,8 @@ new String("hello") eq new String("hello")
 
 case class Person(name: String, age: Int)
 
-val aamir1 = Person("aamir", 32)
-val aamir2 = Person("aamir", 32)
+val aamir1 = module10.Person("aamir", 32)
+val aamir2 = module10.Person("aamir", 32)
 
 aamir1 == aamir2
 aamir1 eq aamir2

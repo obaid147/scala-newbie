@@ -179,12 +179,12 @@ for {
 }  println(s"key : ${m._1}, value: ${m._2}")
 
 // New concept, when nothing in class body
-/*class Person(name: String)
+/*class module10.Person(name: String)
 
-def (person:Person).likes(movie: String): String =
+def (person:module10.Person).likes(movie: String): String =
     s"${person.name} likes $movie"
 
-val mary = Person("Mary")*/
+val mary = module10.Person("Mary")*/
 
 class Rational(val n: Int, val d: Int){
   require(this.d != 0)

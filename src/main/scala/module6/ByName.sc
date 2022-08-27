@@ -11,14 +11,14 @@ case class Person(name: String) {
   def fullName = name + " fayaz"
 }
 
-implicit def method(s: String): Person = {
-  Person(s)
+implicit def method(s: String): module10.Person = {
+  module10.Person(s)
 }
 
-val n = Person("ml")
+val n = module10.Person("ml")
 n.fullName
 
-Person("obaid").fullName
+module10.Person("obaid").fullName
 
 "aamir".fullName
 

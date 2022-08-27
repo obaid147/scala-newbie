@@ -1,11 +1,12 @@
+
 // In Scala, == is aliased to call .equals and is marked final.
 // The equals and hashCode contract are hard to get right
 // and defaults are not useful.
 
 class Person(firstName: String, lastName: String, age: Int)
 
-val p1 = new Person("Obaid", "Fayaz", 28)
-val p2 = new Person("Obaid", "Fayaz", 28)
+val p1 = new module10.Person("Obaid", "Fayaz", 28)
+val p2 = new module10.Person("Obaid", "Fayaz", 28)
 val p3 = p1
 
 p1 == p2

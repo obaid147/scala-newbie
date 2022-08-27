@@ -1,3 +1,5 @@
+import module10.Person
+
 case class Person(firstName: String, lastName: String)
 case class Dog(name: String)
 
@@ -56,7 +58,7 @@ def echoWhatYouGaveMe(x: Any): String = x match {
   println(echoWhatYouGaveMe((1,2,3)))       // three element tuple
 
   // trigger the constructor patterns
-  println(echoWhatYouGaveMe(Person("Melissa", "Alexander")))
+  println(echoWhatYouGaveMe(module10.Person("Melissa", "Alexander")))
   println(echoWhatYouGaveMe(Dog("Suka")))
 
   // trigger the typed patterns
@@ -94,7 +96,7 @@ def echoWhatYouGaveMe(x: Any): String = x match {
 
 /** 3
  * Constructor patterns
- * case Person(first, "Alexander") => s"found an Alexander, first name = $first"
+ * case module10.Person(first, "Alexander") => s"found an Alexander, first name = $first"
  * case Dog("Suka") => "found a dog named Suka"
  * case d: Dog => s"dog: ${d.name}" // dog: Fido
  */
@@ -146,4 +148,4 @@ def addVar2Pattern(x: Any): String = x match {
 println(addVar2Pattern(List(1,'a', 2.1, 3)))
 println(addVar2Pattern(Some(10)))
 println(addVar2Pattern(Some(10)))
-println(addVar2Pattern(Person("John", "Doe")))
+println(addVar2Pattern(module10.Person("John", "Doe")))

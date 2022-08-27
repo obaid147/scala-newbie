@@ -1,3 +1,4 @@
+import module10.Person
 //import cats.implicits.catsKernelStdOrderForInt
 
 //import scala.io.BufferedSource
@@ -60,7 +61,7 @@ class Person(name: String, age: Int, address: String) {
     this(name, 10)
   }
 }
-new Person("aamir", 33, "bangalore") // Primary Constructor
+new module10.Person("aamir", 33, "bangalore") // Primary Constructor
 new Person("obaid", 22) // auxiliary constructor with 2 defined parameters
 new Person("shehzal") // auxiliary constructor with 1 defined parameter
 

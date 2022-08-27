@@ -1,3 +1,5 @@
+import module10.Person
+
 /**
  * case classes and tuples are Product types.
  * Their equality is determined by their public state and

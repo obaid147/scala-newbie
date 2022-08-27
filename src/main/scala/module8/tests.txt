@@ -138,8 +138,8 @@ class Module08Solutions extends KoanSuite with Matchers with SeveredStackTraces 
     val tup = (1, '2', "three")
     listProduct(tup) should be (List(1, '2', "three"))
 
-    case class Person(first: String, last: String, age: Int, gender: Char)
-    val p1 = Person("Sally", "Smith", 43, 'F')
+    case class module10.Person(first: String, last: String, age: Int, gender: Char)
+    val p1 = module10.Person("Sally", "Smith", 43, 'F')
 
     listProduct(p1) should be (List("Sally", "Smith", 43, 'F'))
   }

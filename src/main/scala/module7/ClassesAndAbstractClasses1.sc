@@ -1,10 +1,11 @@
+
 class Person(name: String, age: Int) {
   def isAdult: Boolean = age > 21
 }
 // A class definition can have new instances created for it.
-val p1 = new Person("ABC", 22)
+val p1 = new module10.Person("ABC", 22)
 p1.isAdult
-val p2 = new Person("DEF", 17)
+val p2 = new module10.Person("DEF", 17)
 p2.isAdult
 
 // Because it is not marked abstract,

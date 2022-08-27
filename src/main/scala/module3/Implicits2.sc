@@ -47,18 +47,18 @@ but there is one property of  scala compiler
  */
 
 class Person(val name: String) {
-  def checkIfTwoPersonNamesAreSame(other: Person): Boolean = {
+  def checkIfTwoPersonNamesAreSame(other: module10.Person): Boolean = {
     println(s"THIS:- ${this.name} and $this")
     println(s"OTHER:- ${other.name} and $other")
     this.name == other.name
   }
 }
 
-val person1 = new Person("abc")
-val person2 = new Person("obaid")
+val person1 = new module10.Person("abc")
+val person2 = new module10.Person("obaid")
 person1 checkIfTwoPersonNamesAreSame person2
 
-implicit def stringToPerson(s: String): Person = new Person(s)
+implicit def stringToPerson(s: String): module10.Person = new module10.Person(s)
 
 //person1 checkIfTwoPersonNamesAreSame stringToPerson("obaid")
 person2 checkIfTwoPersonNamesAreSame "obaid"
