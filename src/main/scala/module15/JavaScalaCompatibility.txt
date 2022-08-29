@@ -1,0 +1,21 @@
+1. Java calling scala:-
+    1. provide empty trait based API around Scala Implementation.
+        (Pure Abstract traits)
+
+    2. Avoid function literals as Scala literals can do more than java's. Be careful
+
+    3. Definitely convert between nulls and Options, whenever we are dealing with Java Calling scala interface.
+    <---------------------------------------------------------------------------------------------------------->
+    <---------------------------------------------------------------------------------------------------------->
+2. Scala calling java:-
+    1. Remember "import scala.jdk.CollectionConverters._" do fair amount of work but
+        we may have to do the explicit unboxing(BoxedTypes.sc)
+
+    2. Using implicit conversions carefully.(Wrap my library pattern in scala)
+
+    3. REPL,
+        if we're exploring a Java library, and we use the SBT console,
+        We can bring that library up, import things, create new instances and
+        start trying them out interactively, which is a tremendous advantage over not having a REPL.
+
+        If we are explore java library, Scala may be the best way to do it,
