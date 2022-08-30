@@ -22,7 +22,7 @@ class TestingSuiteDemo extends FunSuite with Matchers{
  * The pending test at the end will put out a warning until defined */
 
 // FunSpec ----------------------
-class TestingSpecDemo extends FunSpec with Matchers {
+class TestingSpecDemo extends FunSpec {
   describe ("Retrieving the weather from the weather service") {
     it ("should call getWeather only if operational is true")(pending)
     it ("should not call getWeather if service not operational")(pending)
