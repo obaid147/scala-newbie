@@ -50,7 +50,7 @@ class CheckEven extends MyPredicate[Int] {
 
 /** flatMap Starts*/
 trait MyTransformer2[-A, +B] {
-  def transform(a: A) :MyList[B]
+  def transform(a: A): MyList[B]
 }
 //class IntToIntTransformer2r extends MyTransformer2[Int, Int] {
 //  override def transform(input: Int): MyList[Int] = new ::(input, new EmptyList)
@@ -103,12 +103,12 @@ class ::[A](override val head: A, override val tail: MyList[A]) extends MyList[A
      listC
    }
 
-   def isEmpty: Boolean = false
-  override def toString: String = {
-    if(tail.isEmpty) head.toString else {
-      head + ", " + tail.toString
+     def isEmpty: Boolean = false
+    override def toString: String = {
+      if(tail.isEmpty) head.toString else {
+        head + ", " + tail.toString
+      }
     }
-  }
   override def map[B](transformer: MyTransformer[A, B]): MyList[B] = {
     new ::(transformer.transform(head), tail.map(transformer))
   }
@@ -212,7 +212,5 @@ object ConstructList extends App {
 // todo: what is case object
 // No parameters
 // Single Instance
-
-
 
 */
