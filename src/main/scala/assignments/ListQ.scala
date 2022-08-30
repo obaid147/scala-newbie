@@ -48,8 +48,8 @@ case class ::[A](override val head: A, override val tail: MyList1[A]) extends My
     f(head).++(tail.flatMap(f))
 
   def zip[B >: A, C](list: MyList1[B])(f: (A, B) => C): MyList1[C] = {
-    f(head, list.head)
-    tail.zip(list.tail)(f)
+    ::(f(head, list.head), tail.zip(list.tail)(f))
+
   }
 
 }
