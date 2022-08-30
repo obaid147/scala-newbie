@@ -10,13 +10,13 @@ class TestingMatchingDemo extends FunSpec with Matchers {
       they("should allow a wide and varied language for matching") {
         val x = 10 * 2
         x should be(20)
-        threeMultiples should have size (6)
+        threeMultiples should have size 6
         threeMultiples should contain allOf(3, 6, 12, 15)
-        threeMultiples should not contain (10)
+        threeMultiples should not contain 10
         threeMultiples should be(Vector(3, 6, 9, 12, 15, 18))
         threeMultiples should be(sorted)
-        all(threeMultiples) should be > (0)
-        atLeast(3, threeMultiples) should be > (10)
+        all(threeMultiples) should be > 0
+        atLeast(3, threeMultiples) should be > 10
       }
     }
   }
@@ -29,8 +29,8 @@ class TestingMatchingDemo extends FunSpec with Matchers {
       val p1 = Person("Obaid", 28)
 
       p1 should have(
-        Symbol("name")("Obaid"),
-        Symbol("age")(28)
+        Symbol ("name") ("Obaid"),
+        Symbol ("age")  (28)
       )
     }
   }
@@ -42,7 +42,7 @@ class TestingMatchingDemo extends FunSpec with Matchers {
         require(1 == 2, "One equals two?")
       }
       val ae = intercept[ArithmeticException](1/0)
-//      ae.getMessage should be("/ by zero")
+//      ae.getMessage should be("/ by zero") // correct way
       ae.getMessage should be(" / by zero")
     }
   }
