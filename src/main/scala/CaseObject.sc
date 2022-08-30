@@ -68,7 +68,7 @@ checkVehicle(Bus)
 checkVehicle(Bike)
 checkVehicle(null)
 
-// --------   2     -----Enumeration
+// --------   3     -----Enumeration
 
 object FlyingObject extends Enumeration{
   val airplane = Value("AP")
@@ -114,5 +114,6 @@ def sealedTraitMatch(flyingObject: FlyingCaseObjects): Unit = {
 }
 //sealedTraitMatch(DroneCaseObject)
 
+// --------   4 -------- toString
 println(Car)
 println(Bicycle) // Nice toString Method
