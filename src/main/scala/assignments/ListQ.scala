@@ -97,8 +97,5 @@ object MainMethod extends App{
   println(intList.zip(stringList){ // zip
     (x, y) => (x, y)
   })
-
-  val f: (Int, Int) => Int = (a,b) => a + b
-  println(f(1, 2))
 }
 
