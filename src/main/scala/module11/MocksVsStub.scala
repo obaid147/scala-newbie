@@ -1,5 +1,5 @@
 import org.scalamock.scalatest.MockFactory
-import org.scalatest.{FunSpec, Matchers}
+import org.scalatest.FunSpec
 
 
 case class MyWeather(temp: Double, precip: Double, pressure: Double)
@@ -16,7 +16,7 @@ object TestMockStub {
   }
 }
 
-class MockVsStub extends FunSpec with Matchers with MockFactory{
+class MockVsStub extends FunSpec with MockFactory{
     it("should call the lookup weather with different codes when necessary") {
       val stubWS = stub[MyWeatherService]
       (stubWS.operational _: () => Boolean).when().returning(true)
