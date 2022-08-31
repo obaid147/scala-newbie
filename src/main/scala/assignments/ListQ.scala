@@ -96,7 +96,6 @@ object MainMethod extends App{
   println(intList.zip(stringList){ // zip
     (x, y) => (x, y)
   })
-
-  EmptyList.foreach(println)
+  
 }
 
