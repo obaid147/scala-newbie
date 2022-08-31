@@ -1,4 +1,4 @@
-abstract class MyList1[+A]{ //MyList1[A] is invariant in type A
+trait MyList1[+A]{ //MyList1[A] is invariant in type A
 
   def head: A
   def tail: MyList1[A]
@@ -49,7 +49,6 @@ case class ::[A](head: A, tail: MyList1[A]) extends MyList1[A]{
 
   def zip[B >: A, C](list: MyList1[B])(f: (A, B) => C): MyList1[C] = {
     ::(f(head, list.head), tail.zip(list.tail)(f))
-
   }
 
 }
@@ -61,7 +60,7 @@ case object EmptyList extends MyList1[Nothing] {
 
   def isEmpty: Boolean = true
 
-  override def toString: String = "dd"
+  override def toString: String = s"isEmpty = $isEmpty"
 
   def filter(f: Nothing => Boolean): MyList1[Nothing] =  EmptyList
 
