@@ -66,7 +66,7 @@ case object EmptyList extends MyList1[Nothing] {
 
   def map[B](f: Nothing => B): MyList1[B] = EmptyList
 
-  def foreach(f: Nothing => Unit): Unit = ()
+  def foreach(f: Nothing => Unit): Unit = println("Empty ForEach")
 
   def ++[B >: Nothing](myList1: MyList1[B]): MyList1[B] = myList1
 
@@ -96,5 +96,7 @@ object MainMethod extends App{
   println(intList.zip(stringList){ // zip
     (x, y) => (x, y)
   })
+
+  EmptyList.foreach(println)
 }
 
