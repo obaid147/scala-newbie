@@ -19,8 +19,8 @@ abstract class MyList1[+A]{ //MyList1[A] is invariant in type A
 
 }
 
-case class ::[A](override val head: A, override val tail: MyList1[A]) extends MyList1[A]{
-  override def isEmpty: Boolean = false
+case class ::[A](head: A, tail: MyList1[A]) extends MyList1[A]{
+  def isEmpty: Boolean = false
 
   override def toString: String = {
     if (tail.isEmpty) head.toString else {
