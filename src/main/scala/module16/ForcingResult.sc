@@ -10,11 +10,15 @@ val success = Future(2 / 1)
 val failure = Future(1 / 0)
 
 Await.ready(failure, 1.second)
+// Await.ready does not give result itself it waits for the future to finish
 /**Await.ready waits for the Future to be resolved one way or the
 other before continuing, but does not evaluate the result.*/
 failure.value
 failure.isCompleted
 
-/** If you used Await.result in this example, an Exception would be thrown at that point.
- * */
+
 Await.result(failure, 1.second)
+/** If you used Await.result in this example, an Exception would be
+    thrown at that point.
+ *  Await.result will evaluate the value.
+ * */
