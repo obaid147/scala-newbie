@@ -16,16 +16,16 @@ val f1 = Future{ //
   Thread.sleep(1000)
   10
 }
-/** INCOMPLETE STATE*/
+/** INCOMPLETE STATE (unresolved)*/
 f1.value // Option[scala.util.Try[Int]] = None
 f1.isCompleted // false
 
 Thread.sleep(1000)
-/** COMPLETE STATE with SUCCESS*/
+/** COMPLETE STATE with SUCCESS (resolved successfully)*/
 f1.value // as soon as it is complete, we get success
 f1.isCompleted // true
 
-/** COMPLETE STATE with FAILURE*/
+/** COMPLETE STATE with FAILURE (resolved unsuccessfully)*/
 val f2 = Future(1/0)
 Thread.sleep(10)
 f2.value
