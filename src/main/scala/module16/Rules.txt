@@ -1,0 +1,40 @@
+SomeInitialRules
+1. Never block or Await in a future (this includes Thread.sleep()) - for testing
+    or at the very top level you sometimes have to ignore this advice, but nowhere else!
+    {
+    1. Blocking thread sleeping or anything like that.That takes one of the threads out of the
+        thread pool for however long it's blocking or sleeping.
+        Typically, we can have millions of futures, but a dozen of threads running at any point.
+
+    2. If we run many threads on JVM it doesn't run very well.
+
+    3. The idea with features is they get swapped on and off of threads.
+        That's what a thread poll is all about.
+
+    4. If we block a thread that takes something out of the thread pool, if we do it enough, we'll
+        starve all the futures that none of them will be able to run
+        because all our threads are busy waiting for stuff and doing nothing.
+
+    5. So never block, use a wait or use Thread.Sleep when you're doing feature programming.
+
+    6. If we don't block or if we don't await the thread, then
+        the JVM will just happily exit early and never give you a result.
+    }
+
+2. Try not to mix ExecutionContexts unless you know what you are doing.
+    (Use simple Execution context unless you have other sources.)
+
+3. Futures start executing immediately after they are created
+    (do if you don't want this, make it lazy with a function)
+    {
+     1. Future start executing immediately when they're created.
+
+     2. If you don't want this, you can make it lazy by creating a function zero and invoking the function
+
+    zero to start the future when you're ready.
+    }
+
+4. Scala futures are not cancellable (but if you run in the context of an actor system, you can terminate that)
+    {
+        Cancelling Futures running under execution context.
+    }
