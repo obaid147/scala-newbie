@@ -1,6 +1,7 @@
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent._
 import scala.concurrent.duration.DurationInt
-import ExecutionContext.Implicits.global
+import scala.util.{Failure, Success}
 
 //val fa: Future[Any] = Future(10)
 // instead of being Option of value it is a future of value
@@ -49,3 +50,29 @@ def handleSuccessFailed: Future[Int] = fii.transform(i => i * 5,{
 })
 
 Await.ready(handleSuccessFailed, 1.second)
+
+// anThen, onComplete, and foreach are side effecting functions
+
+// anThen is a side effect so we do something useful
+val f6 = Future(61)
+val f7: Future[Int] = f6.andThen{
+//andThen allows us to perform side effect on this future.
+      // after future has been completed
+  case Success(i) if i % 2 == 0 => println("It's an event")
+    // This is a partial function.
+}
+Await.result(f7, 1.second)
+
+// -------onComplete
+// is an event handler, When complete success doThis failure doThat
+val fOnComplete: Unit = f7.onComplete{
+  // This is a partial function but more of an event handler.
+  case Success(u) => println(s"The answer is $u")
+  case Failure(ex) => println(s"It Failed ${ex.getMessage}")
+}
+
+val forEachSuccess: Unit = f7.foreach{ i => println(s"Got an $i")}
+// foreach only fires on Success.
+val forEachFailed: Unit =
+  f7.failed.foreach{i => println(s"Got an ${i.getMessage}")}
+// to get the failed value, we can use Future
