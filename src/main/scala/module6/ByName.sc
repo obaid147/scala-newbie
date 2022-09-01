@@ -1,5 +1,26 @@
 import scala.language.implicitConversions
 
+// check module6.WritingOurOwnLoop.sc
+def byValue(i: Int): Unit = {
+  println(s"First = $i")
+  println(s"2nd = $i")
+  println(s"3rd = $i")
+}
+byValue(1)
+
+def byName(i: => Int): Unit = {
+  println(s"First = $i")
+  println(s"2nd = $i")
+  println(s"3rd = $i")
+}
+var total = 0
+byName{
+  total += 1
+  total
+}
+
+/**byNameMethod will print  inside method then hi
+ * if there was no =>, It will print hi then inside method */
 def byNameMethod(f: => Unit):Unit = {
   println("inside method")
   f
@@ -11,14 +32,15 @@ case class Person(name: String) {
   def fullName = name + " fayaz"
 }
 
-implicit def method(s: String): module10.Person = {
-  module10.Person(s)
+implicit def method(s: String): Person = {
+  Person(s)
 }
 
-val n = module10.Person("ml")
+val n = Person("ml")
 n.fullName
 
-module10.Person("obaid").fullName
+Person("obaid").fullName
 
 "aamir".fullName
+
 
