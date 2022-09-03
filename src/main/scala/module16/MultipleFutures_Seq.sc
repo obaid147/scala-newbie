@@ -40,7 +40,7 @@ val ft2 = Future { Thread.sleep(5); 5 }
 val ft3 = Future { Thread.sleep(20); 20 }
 val sft: List[Future[Int]] = List(ft1, ft2, ft3)
 
-Await.ready(Future.firstCompletedOf(sft), 1.second) // Future(Success(5))
+Await.ready(Future.firstCompletedOf(sft), 1.second)
 // Takes Seq[Futures[T]] First Seq to complete will be used as a result
 /**Scala futures are non cancelable, this will not block next processing*/
 
