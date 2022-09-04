@@ -10,6 +10,14 @@ multiplyMethod(2, 3)
 multiplyFunction(2, 3)
 // res1: Int = 6
 
+// behind the scenes Function 2 is created
+val fn1 = new Function2[Int, Int, Int] {
+  override def apply(a: Int, b: Int): Int = a + b
+}
+// another way of writing
+val fn2: Function2[Int, Int, Int] = (a: Int, b: Int) => a + b
+
+
 val nums = (1 to 5).toList
 
 // List[Int] = List(1, 4, 9, 16, 25)
