@@ -25,12 +25,19 @@ object Rational{
   def apply(i: Int): Rational = new Rational(i, 1)
 }
 
-//val half = Rational(1, 2)
-//val five = Rational(5)
+val half = Rational(1, 2)
+val five = Rational(5) // wrapping 5 into rational
 
-//val sum = half + five // re-written half.+(five)
+half + five // re-written half.+(five)
 // OR
+half + 5 // OR
 Rational(1, 2) + 5 // re-written Rational(1,2).+(5)
+/*First +(i: Int) gets called,
+  That wraps 5 into Rational(i), and then that
+  ends up calling +(n: INt, d: Int)
+  this.+(Rational(i)) OR this + Rational(i)
+ */
+
 /**
  * No constructor accessible from here
  * val fifth = new Rational(1, 5)
