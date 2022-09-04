@@ -30,18 +30,18 @@ Rational(5) + half
  */
 
 class Person(val name: String){
-  def checkName(other: module10.Person): Boolean =
+  def checkName(other: Person): Boolean =
     this.name == other.name
 }
 
-val p1 = new module10.Person("Obaid")
-val p2 = new module10.Person("abc")
+val p1 = new Person("Obaid")
+val p2 = new Person("abc")
 p1.name
 p2.name
 p1 checkName p2
 // p1 checkName "Obaid" // As it is expecting module10.Person obj
-implicit def personToString(s: String): module10.Person =
-  new module10.Person(s) /** converting person to string */
+implicit def personToString(s: String): Person =
+  new Person(s) /** converting person to string */
 
 p1 checkName "Obaid"
 p2 checkName "Obaid"
