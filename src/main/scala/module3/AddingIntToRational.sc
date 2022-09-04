@@ -1,4 +1,4 @@
-import module10.Person
+
 
 /**
  * Strategy one: construct a Rational from an Int
@@ -46,6 +46,6 @@ class Person(name: String, age: Int, city: String){ // module10.Person
   }
 }
 
-val person = new module10.Person("OBAID", 11, "SXR")
+val person = new Person("OBAID", 11, "SXR")
 val person = new Person("Aamir", 12)
 val person = new Person("Kashmir")
