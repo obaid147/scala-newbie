@@ -1,5 +1,5 @@
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.{Await, Future}
+import scala.concurrent.Future
 import scala.concurrent.duration._
 
 /*val success: Future[Int] = Future {
@@ -57,25 +57,42 @@ object Database {
   }
 
 }
-/*val res = Database.fetchDiagnosisForUniqueCode("B159")
-Await.result(res, 1.second)*/
 
 
 //getAllUniqueCodes codes, --> a
 //map over a and then call fetchDiagnosisForUniqueCode
-def fetchDiagnosisForUniqueCodes: Future[List[DiagnosisCode]] =  Future{
-  for{
-    un <- Database.data
-  }yield un
+def fetchDiagnosisForUniqueCodes/*: Future[List[DiagnosisCode]]*/ =  {
+
+  val myStringList: List[String] =
+    Database.getAllUniqueCodes.value match {
+    case Some(x) => x.toOption match {
+      case Some(x) => x
+    }
+  }
+
+
+  val l: Future[List[Option[DiagnosisCode]]] =
+    Future.traverse(myStringList){
+      Database.fetchDiagnosisForUniqueCode
+    }
+
+  l.value match {
+    case List(Some(x)) => List(x)
+  }
+
+
 }
 
-Await.result(fetchDiagnosisForUniqueCodes, 1.second)
 /**
  * A00 -> List(A001, A009)
  * H26 -> List(H26001, H26002)
  */
 
-def fetchUniqueCodesForARootCode: Future[Map[String, List[String]]] = Future{
-  ???
-}
+def fetchUniqueCodesForARootCode: Future[Map[String, List[String]]] = {
+  /*val y: Map[(String, List[String]), List[DiagnosisCode]] =
+    Database.data.groupBy(x => x.rootCode -> List(x.uniqueCode))
+  val z: Map[String, List[DiagnosisCode]] = Database.data.groupBy(_.rootCode)
+  z*/
 
+???
+}
