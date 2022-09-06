@@ -58,25 +58,11 @@ object Database {
 
 }
 
-
 //getAllUniqueCodes codes, --> a
 //map over a and then call fetchDiagnosisForUniqueCode
-def fetchDiagnosisForUniqueCodes: Future[List[DiagnosisCode]] =  Future{
-  val myStringList: List[String] =
-    Database.getAllUniqueCodes.value match {
-    case Some(x) => x.toOption match {
-      case Some(x) => x
-    }
-  }
-//  val n = myStringList.map(Database.fetchDiagnosisForUniqueCode)
-//  val m = Future.sequence(n)
-  Future.traverse(myStringList){
-    Database.fetchDiagnosisForUniqueCode
-  }.value match {
-    case Some(x) => x.toOption match {
-      case Some(x) => x.flatten
-    }
-  }
+def fetchDiagnosisForUniqueCodes: Future[List[DiagnosisCode]] =  {
+  Database.getAllUniqueCodes.map
+
 }
 
 /**
