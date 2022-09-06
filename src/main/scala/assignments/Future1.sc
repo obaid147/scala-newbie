@@ -61,8 +61,8 @@ object Database {
 //getAllUniqueCodes codes, --> a
 //map over a and then call fetchDiagnosisForUniqueCode
 def fetchDiagnosisForUniqueCodes: Future[List[DiagnosisCode]] =  {
-  Database.getAllUniqueCodes.map
-
+//  Database.getAllUniqueCodes.map
+???
 }
 
 /**
