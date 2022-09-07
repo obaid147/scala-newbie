@@ -1,14 +1,14 @@
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+import scala.concurrent._
 import scala.concurrent.duration._
 
-/*val success: Future[Int] = Future {
+val success: Future[Int] = Future {
   Thread.sleep(10000)
   2 + 1
 }
 
 
-val res: Int = Await.result(success, 11.second) // Await.ready
+//val res: Int = Await.result(success, 11.second) // Await.ready
 
 
 val x: Future[Int] = Future {
@@ -28,7 +28,7 @@ def method(x: Int):Future[Int] = {
     // Future.successful(10) // here no thread will be allocated by OS
     Future.failed(throw new Exception(""))
   }
-}*/
+}
 
 
 //diff b/w recover, recoverWith, transform
@@ -53,28 +53,40 @@ object Database {
   }
 
   def fetchDiagnosisForUniqueCode(uniqueCode: String): Future[Option[DiagnosisCode]] = Future {
-    Database.data.find(code => code.uniqueCode == uniqueCode)
+    Database.data.find(_.uniqueCode.equalsIgnoreCase(uniqueCode))
   }
 
 }
+Await.result(Database.fetchDiagnosisForUniqueCode("abcs"), 1.second)
 
 //getAllUniqueCodes codes, --> a
 //map over a and then call fetchDiagnosisForUniqueCode
-def fetchDiagnosisForUniqueCodes: Future[List[DiagnosisCode]] =  {
-//  Database.getAllUniqueCodes.map
-???
+def fetchDiagnosisForUniqueCodes: Future[List[DiagnosisCode]] = {
+  val x: Future[List[DiagnosisCode]] = Database.getAllUniqueCodes.map {
+      xs =>
+        xs.map { uq =>
+          Database.fetchDiagnosisForUniqueCode(uq)
+        }
+      }.flatMap{
+      z => Future.sequence(z)
+    }.map(_.flatten)
+  x
+//  xa.map(z => Future.sequence(z)).flatMap(_.map(_.flatten))
+
 }
+Await.result(fetchDiagnosisForUniqueCodes, 2.second)
 
 /**
  * A00 -> List(A001, A009)
  * H26 -> List(H26001, H26002)
  */
-
 def fetchUniqueCodesForARootCode: Future[Map[String, List[String]]] = {
-  /*val y: Map[(String, List[String]), List[DiagnosisCode]] =
-    Database.data.groupBy(x => x.rootCode -> List(x.uniqueCode))
-  val z: Map[String, List[DiagnosisCode]] = Database.data.groupBy(_.rootCode)
-  z*/
-
-???
+  fetchDiagnosisForUniqueCodes.map { x =>
+    val a: Map[String, List[DiagnosisCode]] = x.groupBy(x => x.rootCode)
+    a.view.mapValues(x => x.map(_.uniqueCode)).toMap
+  }
 }
+
+Await.result(fetchDiagnosisForUniqueCodes, 1.second)
+
+
