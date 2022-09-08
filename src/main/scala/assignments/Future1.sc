@@ -1,7 +1,6 @@
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent._
 import scala.concurrent.duration._
-import scala.util.{Failure, Success}
 
 /*val success: Future[Int] = Future {
   Thread.sleep(10000)
@@ -89,13 +88,13 @@ def fetchDiagnosisForUniqueCodes: Future[List[DiagnosisCode]] = {
  */
 def fetchUniqueCodesForARootCode: Future[Map[String, List[String]]] = {
 
-  val g: Future[Map[String, List[String]]] =
+  val old: Future[Map[String, List[String]]] =
     fetchDiagnosisForUniqueCodes.map{
-    x => x.groupBy(_.rootCode).map{ x =>
-      x._1 -> List(x._1, x._1)
+    x => x.groupBy(_.rootCode).map{
+      case (k, v) => (k, v.map(_.uniqueCode))
     }
-  } // returns single element
-//
+  }
+
 //  // using groupBy
 //  val ll: Future[Map[String, List[String]]] =
 //    fetchDiagnosisForUniqueCodes.map {
@@ -114,5 +113,7 @@ def fetchUniqueCodesForARootCode: Future[Map[String, List[String]]] = {
 //      }
 //    }
 //  }
-  g
+  old
 }
+
+Await.result(fetchUniqueCodesForARootCode, 2.second)
