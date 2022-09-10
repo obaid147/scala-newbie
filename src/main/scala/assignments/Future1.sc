@@ -69,18 +69,12 @@ object Database {
 //getAllUniqueCodes codes, --> a
 //map over a and then call fetchDiagnosisForUniqueCode
 def fetchDiagnosisForUniqueCodes: Future[List[DiagnosisCode]] = {
-  Database.getAllUniqueCodes.map { // Future[List[Future[Option[DiagnosisCode]]]]
-      xs =>
-        xs.map { uq =>
-          Database.fetchDiagnosisForUniqueCode(uq) // Future[Option[DiagnosisCode]]
-        }
-  }.flatMap{ z =>// List[Future[Option[DiagnosisCode]]]
-    Future.sequence(z) // Future[List[Option[DiagnosisCode]]]
-    }.map(_.flatten)
-
-
+  Database.getAllUniqueCodes.flatMap{ x =>
+    Future.traverse(x)(Database.fetchDiagnosisForUniqueCode).map{
+      _.flatten
+    }
+  }
 }
-//Await.result(fetchDiagnosisForUniqueCodes, 2.second)
 
 /**
  * A00 -> List(A001, A009)
