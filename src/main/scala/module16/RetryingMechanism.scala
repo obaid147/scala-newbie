@@ -60,7 +60,7 @@ object RetryingMechanism2 extends App {
   val f3 = retry(calc(), 3)
   Await.ready(f3, 10.seconds) // failure
   println(f3)
-
+  
 
   resetTries()
 
