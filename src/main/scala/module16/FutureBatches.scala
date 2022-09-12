@@ -37,8 +37,14 @@ object FutureBatches extends App {
 
   import FutureBatchesUtil._
 
-  val nums = (1 to 4).toVector
-  val f = processSeq(nums)
-  val result =  Await.result(f, 20.seconds)
-  println(result)
+  val nums = (1 to 20).toVector
+  val f1 = processSeq(nums)
+  val result1 =  Await.result(f1, 20.seconds) // starts all 20 at once
+  println("---------------------")
+  val f2 = processSeqBatch(nums, 2)
+  val result2 =  Await.result(f2, 20.seconds)
+  // waits for each 2 to finish before starting next
+
+  println(result1)
+  println(result2)
 }
