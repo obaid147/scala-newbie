@@ -1,11 +1,12 @@
 import org.scalatest.{FunSuite, Matchers, FunSpec}
 // --------------- FunSuit
 class TestingSuiteDemo extends FunSuite with Matchers{
-  val numbers: List[Int] = (1 to 5).toList
+  val numbers: List[Int] = (1 to 20).toList
 
   test("Filtering a list"){
     val filtered =  numbers.filter(_ > 15)
-    assert(filtered == Seq(16, 17, 18, 19,20))
+    assert(filtered == List(16, 17, 18, 19,20))
+    // filtered should be (List(16, 17, 18, 19,20))
   }
 
   test("Summing a list"){
