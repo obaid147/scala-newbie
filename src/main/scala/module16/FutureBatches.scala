@@ -17,13 +17,27 @@ object FutureBatchesUtil {
     val allFutures: Vector[Future[Int]] = xs.map(calc)
     Future.sequence(allFutures)
   }
+
+  def processSeqBatch(xs: Vector[Int], batchSize: Int): Future[Vector[Int]] = {
+    val batches: Iterator[Vector[Int]] = xs.grouped(batchSize)
+    val start: Future[Vector[Int]] = Future.successful(Vector.empty[Int])
+
+    batches.foldLeft(start) {(accF, batch) =>
+      for{
+        acc: Vector[Int] <- accF
+        batchRes: Vector[Int] <- processSeq(batch)
+      } yield acc ++ batchRes
+    }
+  }
+
 }
+
 object FutureBatches extends App {
 
 
   import FutureBatchesUtil._
 
-  val nums = (1 to 20).toVector
+  val nums = (1 to 4).toVector
   val f = processSeq(nums)
   val result =  Await.result(f, 20.seconds)
   println(result)
