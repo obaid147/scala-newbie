@@ -106,6 +106,6 @@ object MainMethod extends App{
     (x, y) => (x, y)
   })
 
-  println(intList.foldLeft(0)((x,y) => x+y))
+  println(intList.fold(0)((x,y) => x+y))
 }
 
