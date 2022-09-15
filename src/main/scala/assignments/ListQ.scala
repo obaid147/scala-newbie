@@ -1,3 +1,5 @@
+import org.scalatest.{FunSuite, Matchers}
+
 trait MyList1[+A]{ //MyList1[A] is invariant in type A
 
   def head: A
@@ -84,6 +86,63 @@ case object EmptyList extends MyList1[Nothing] {
   def zip[B >: Nothing, C](list: MyList1[B])(f: (Nothing, B) => C): MyList1[C] = EmptyList
 }
 
+class UnitTesting extends FunSuite with Matchers {
+  val intList: MyList1[Int] = ::(1 , ::(2, :: (3, ::(4,  EmptyList))))
+  val charList: MyList1[Char] = ::('a', ::('b', ::('c', EmptyList)))
+  val stringList: MyList1[String] = ::("obaid" , ::("fayaz", :: ("wani", ::("aamir",  EmptyList))))
+
+
+  test("Empty foreach should return Unit:- ()") {
+    EmptyList.foreach(println) should be(())
+  }
+
+  test("Empty ++ should return charList"){
+    intList.++(EmptyList) should be (intList)
+  }
+
+  test("Empty filter should return EmptyList"){
+    EmptyList.filter(x => x) should be (EmptyList)
+  }
+
+  test("Empty map should return EmptyList") {
+    EmptyList.map(x => x) should be(EmptyList)
+  }
+
+  test("Testing filter method"){
+    assert(intList.filter(_ > 2) == ::(3, ::(4, EmptyList)), "_ must be greater than 3")
+  }
+
+  test("Testing map method"){
+    assume(intList.map(_*3) == ::(3, ::(6, ::(9, ::(12, EmptyList)))), "must be ")
+  }
+
+  test("++ method"){
+    require(intList.fold(0)((x,y) => x+y) == 11, "x must be 10")
+  }
+
+  test("Ensuring fold method") {
+    intList.fold(0) { (x, y) => x * y } ensuring(_ >= 0, "value cannot be negative")
+  }
+
+  test("flatMap method with stringList"){
+    stringList.flatMap { // flatMap
+      x =>
+        ::(x, ::(x.toUpperCase, EmptyList))
+    } ensuring(_.tail.head == "obaid".toUpperCase, "Even items should have UpperCases")
+  }
+
+  test("concat method test"){
+    intList.++(charList) should be (::(1, ::(2, ::(3, ::(4, ::('a', ::('b', ::('c', EmptyList))))))))
+  }
+
+  test("Zip method test"){
+    assert (intList.zip(stringList) {
+      (x, y) => (x, y)
+    } != EmptyList, "zipping two lists should not end up empty")
+//    should be (::((1,"obaid"), ::((2, "Fayaz"), ::((3, "wani"), ::((4, "aamir"), EmptyList)))))
+  }
+
+}
 object MainMethod extends App{
   val intList: MyList1[Int] = ::(1 , ::(2, :: (3, ::(4,  EmptyList))))
   val stringList: MyList1[String] = ::("obaid" , ::("fayaz", :: ("wani", ::("sxr",  EmptyList))))
