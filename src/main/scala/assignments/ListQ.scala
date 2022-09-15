@@ -17,11 +17,12 @@ trait MyList1[+A]{ //MyList1[A] is invariant in type A
 
   def zip[B >: A, C](list: MyList1[B])(f: (A, B) => C): MyList1[C]
 
+  def fold[B](x: B)(f: (B, A) => B): B
+
 }
 
 case class ::[A](head: A, tail: MyList1[A]) extends MyList1[A]{
   def isEmpty: Boolean = false
-
   override def toString: String = {
     if (tail.isEmpty) head.toString else {
       head + ", " + tail.toString
@@ -31,6 +32,11 @@ case class ::[A](head: A, tail: MyList1[A]) extends MyList1[A]{
   def filter(f: A => Boolean): MyList1[A] ={
     if(f(head)) ::(head, tail.filter(f))
     else tail.filter(f)
+  }
+
+  def fold[B](x: B)(f: (B, A) => B): B = {
+
+    tail.fold(f(x, head))(f)
   }
 
   def map[B](f: A => B): MyList1[B] = {
@@ -54,6 +60,7 @@ case class ::[A](head: A, tail: MyList1[A]) extends MyList1[A]{
 }
 
 case object EmptyList extends MyList1[Nothing] {
+
   def head: Nothing = throw new Exception("empty.head")
 
   def tail: Nothing = throw new Exception("empty.tail")
@@ -61,6 +68,8 @@ case object EmptyList extends MyList1[Nothing] {
   def isEmpty: Boolean = true
 
   override def toString: String = s"isEmpty = $isEmpty"
+
+  override def fold[B](a: B)(f: (B, Nothing) => B): B = a
 
   def filter(f: Nothing => Boolean): MyList1[Nothing] =  EmptyList
 
@@ -96,6 +105,7 @@ object MainMethod extends App{
   println(intList.zip(stringList){ // zip
     (x, y) => (x, y)
   })
-  
+
+  println(intList.foldLeft(0)((x,y) => x+y))
 }
 
