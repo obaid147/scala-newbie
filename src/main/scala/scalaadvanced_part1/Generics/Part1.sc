@@ -31,7 +31,7 @@
 /** fruitBowl.contents & cerealBowl.contents are types of Food
  * We have lost the subtypes Fruits & Cereal*/
 
-  // Generics ----------------
+  // ------------------- Generics ----------------
   case class BowlF[F](contents: F){
   override def toString = s"A bowl of yummy ${contents}s"
   }
@@ -58,18 +58,58 @@
   val tommy: Dog = Dog("Tommy")
   val dogBowl = BowlF(tommy) // eating dog?
 
-  case class FoodBowl[F <: Food](contents: F){
+  case class FoodBowl[F <: Food](contents: F){ // upperBound
     override def toString: String = s"A yummy bowl of ${contents.name}s"
   }
 
   val appleBowl = FoodBowl(fuji)
-  val dogBowl1 = FoodBowl(tommy) // tommy is not food
-
-  def holdFruit(food: FoodBowl[Fruit]) = ???
+  //  val dogBowl1 = FoodBowl(tommy) // don't eat my dog
 
 
-  holdFruit(FoodBowl[Apple](Apple("kashmiri")))
+  // ------------------Variance ---------------
+  def holdFruit(food: FoodBowl[Fruit]): Fruit = {
+    //    food is FoodBowl[Fruit]
+    //    food.contents is FoodBowl[Fruit]
+    //     food.contents.name  is String
+    food.contents
+  }
+    /**FoodBowl can only hold 'Fruit' and cannot hold apple*/
+
+//  holdFruit(FoodBowl[Apple](Apple("kashmiri")))
   val b1: FoodBowl[Fruit] = FoodBowl[Fruit](Apple("kashmiri"))
   holdFruit(FoodBowl[Fruit](Apple("kashmiri")))
 
- // A <: B, FruitBowl[Apple] <: FruitBowl[Fruit] -- covariance
+  /** FoodBowl[Fruit]
+   * THIS IS A wrapper
+   * Whenever we see a wrapper
+   * Variance comes into picture*/
+
+  def serveToFruitEater(fruitBowl: FoodBowl[Fruit]): String = {
+    s"mmmm, those ${fruitBowl.contents.name}s were very good"
+  }
+
+  // Specifying type parameter
+  val fruitBowl = FoodBowl[Fruit](fuji) // F <: Food
+  val cerealBowl = FoodBowl[Cereal](alpen)
+  serveToFruitEater(fruitBowl)
+//  serveToFruitEater(cerealBowl) type mismatch
+
+  val x: FoodBowl[Apple] = FoodBowl(fuji)
+  val y: FoodBowl[Fruit] = FoodBowl[Fruit](fuji)
+//  serveToFruitEater(x)
+  /**FruitBowl[Fruit] is not same as FruitBowl[Apple]
+   * Idea of variance, how these can be related with one another */
+
+  def serveToFoodEater(foodBowl: FoodBowl[Food]): String = {
+    s"mmmm, those ${foodBowl.contents.name}s were very good"
+  } // FOOD EATER
+  val foodBowl: FoodBowl[Food] = FoodBowl[Food](fuji)
+  val foodBowl: FoodBowl[Food] = FoodBowl[Food](alpen)
+  val fruitBowl = FoodBowl[Fruit](fuji)
+//  serveToFoodEater(fruitBowl) type mismatch, even with subtype
+
+  /*Compiler does not know hoe Fruit is related to Food*/
+  /** covariance fixes this*/
+
+  
+
