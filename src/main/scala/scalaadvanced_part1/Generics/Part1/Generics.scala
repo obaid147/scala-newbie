@@ -13,10 +13,9 @@ object Generics extends App{
   case class Oats(name: String) extends Cereal
   case class Kelloggs(name: String) extends Cereal
 
-
   val apple: Apple = Apple("kashmiri-apple")
   val oats: Oats = Oats("oat")
-  val kelloggs: Kelloggs = Kelloggs("corn")
+  val kelloggs: Kelloggs = Kelloggs("kelloggs")
 
 
   // ------------------- Generics ----------------
@@ -100,13 +99,22 @@ object Generics extends App{
       s"mmmm, I really liked that ${foodBowl.contents.name}"
 
     val myFoodBowl: MyFoodBowl[Food] = MyFoodBowl[Food](kelloggs)
+
     val myFruitBowl: MyFoodBowl[Fruit] = MyFoodBowl[Fruit](apple)
-    val myAppleBowl: MyFoodBowl[Apple] = MyFoodBowl[Apple](apple) // also works
     val myCerealBowl: MyFoodBowl[Cereal] = MyFoodBowl[Cereal](oats) // also works
+
+    val myAppleBowl: MyFoodBowl[Apple] = MyFoodBowl[Apple](apple) // also works
+    val myOatsBowl: MyFoodBowl[Oats] = MyFoodBowl[Oats](oats)
+    val myKelloggsBowl: MyFoodBowl[Kelloggs] = MyFoodBowl[Kelloggs](kelloggs)
+
     println(serveToFoodEaterCovariance(myFoodBowl))
+
     println(serveToFoodEaterCovariance(myFruitBowl))
-    println(serveToFoodEaterCovariance(myAppleBowl))
     println(serveToFoodEaterCovariance(myCerealBowl))
+
+    println(serveToFoodEaterCovariance(myAppleBowl))
+    println(serveToFoodEaterCovariance(myOatsBowl))
+    println(serveToFoodEaterCovariance(myKelloggsBowl))
 
   /*
   this is now considered as subtype of FoodBowl[Food]
