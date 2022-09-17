@@ -1,0 +1,56 @@
+/** Whenever we see a wrapper like List[Int] or FoodBowl[Food], variance comes into picture. */
+Variance types
+1. What we want is for FoodBowl[Apple] to be a subtype of FoodBowl[Fruit] and FoodBowl[Food].
+2. This relationship is known as variance and is demarked by + and - on the generics.
+3. [+F] means that the type parameter is co-variant.
+4. [-F] means that the type parameter is contra-variant.
+5. These modifiers are only used in the definition of a generic class or trait.
+6. If a type parameter has neither + nor -, it is considered invariant.
+
+-------------------------------------------Let's say, we have classes A, B and C-------------------------
+
+A <--- B <--- C (Normal Inheritance)
+C extends B, B extends A, and C indirectly extends A.
+
+----------------------------------- [Invariance] ------------------------------------------
+Invariant==> (no + nor - sign)
+A      B      C
+If we don't put + nor - on that generic type parameter, These are considered as Invariant.
+A is not B, B is not C, and C in not A.
+
+example1:-
+class A[F <: Food](contents: FoodBowl[Food])
+class B[F <: Food](contents: FoodBowl[Fruit])
+They can't be used anyway interchangeably, FoodBowl[Food] and FoodBowl[Fruit] are different.
+
+example2:-
+val setOfInt: Set[Int] = Set(1, 2, 3)
+val setOfAny: Set[Any] = setOfInt
+// Error as set is invariant and Set[Int] and Set[Any] are 2 different Types.
+
+---------------------------------- [Covariance +] -------------------------------------------
+Covariant==> +
+FoodBowl[Food] <--- FoodBowl[Fruit] <--- FoodBowl[Apple]
+FoodBowl[Apple] is subType of FoodBowl[Food] and FoodBowl[Food] <--- FoodBowl[Fruit] which means
+FoodBowl[Apple] is subType of FoodBowl[Food]
+
+example1:-
+class A[+F <: Food](contents: FoodBowl[Food])
+class B[F <: Food](contents: FoodBowl[Fruit])
+FoodBowl[Fruit] is a subtype of FoodBowl[Food]
+
+example2:-
+val listOfInts: List[Int] = List(1, 2, 3)
+val listOfAny: List[Any] = nums /// Int is subclass of Any
+This is because List is defined as Covariant in its parameter type.
+
+---------------------------------- [Contravariance -] -------------------------------------------
+Contravariant==> -
+When - is the modifier before the generic type, then what is does is it effectively flips the arrow around.
+A ---> B ---> C,  A is a subtype of C
+
+FoodBowl[Food] extends FoodBowl[Fruit] extends FoodBowl[Apple]
+FoodBowl[Food] is a subtype of FoodBowl[Apple]
+
+This is very useful, usually for input parameters on things
+and for methods that take certain output types that are more specific then what it really requires.
