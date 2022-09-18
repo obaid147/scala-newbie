@@ -1,0 +1,30 @@
+1. Any supplied type T is invariant, covariant and contravariant to itself!...
+(When we say something is +T(Covariance), it means it can be T or more specific.)
+(When we say something is -T(Contravariance), It means it can be T or more general.)
+if supplied T in these cases is valid.
+for (Invariant) ---> T is the only type
+
+2. Only type T is all three of these things to type T.
+   type T is the common among T, +T, -T.
+
+3. Any type T also satisfies lower and upper bounds to itself.
+    UpperBound:-If we say something is upper-bounded by Fruit, Then Fruit is valid to use there.
+                The hierarchy goes up till Fruit and not beyond Fruit.
+
+    LowerBound:- If we say something is lower-bounded by Apple, Then Apple is valid to use there.
+                 The hierarchy goes down till Apple and not beyond Apple.
+
+    ***{VARIANCE & BOUNDS are INCLUSIVE LIMITS}***
+
+4.Class/Trait type parameters are the only place you can use variance
+    -->modifiers
+        ->not in method type parameters
+        ->not in any usage of a type parameter
+
+5.We often say a class or trait is co- or contra-variant, but in fact type
+parameters, not the containing types have variance.
+
+    People say List is Covariant, but the more correct way to say it is that a List is Covariant in its type parameter.
+    (List is Covariant in its single type parameter T)
+
+6.A Class or Trait can have both co- and contra-variant type parameters in its definition.
