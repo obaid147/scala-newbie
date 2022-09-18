@@ -1,6 +1,6 @@
 package scalaadvanced_part1.Generics.Part1
 
-object Generics extends App{
+object Invarinace_Covariance extends App{
 
   abstract class Food {
     def name: String
