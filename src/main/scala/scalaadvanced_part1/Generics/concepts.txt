@@ -1,0 +1,11 @@
+--> covariant types are not allowed as method parameter ? I explained
+--> contravariant types are not allowed as method return types?
+
+--> covariance, A <: B ; W[A] <: W[B]
+--> function variance:-
+
+ mehtd(f: ):s
+
+ --> A1 => B1 and A2 => B2 ;
+
+
