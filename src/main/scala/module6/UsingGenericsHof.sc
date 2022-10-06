@@ -1,5 +1,5 @@
 import java.io.File
-import scala.io.{BufferedSource, Source}
+import scala.io.Source
 
 def fileContainsQuestion(file: File): Boolean = {
   val source = Source.fromFile(file)
@@ -38,5 +38,4 @@ def hof[A](file: File, f: String => A, default: A): A = {
 val newFile = new File("D:/abc.txt")
 
 val h1: Boolean = hof(newFile, (x: String) => x.trim.endsWith("?"), false)
-val h1: String = hof(newFile, (x: String) => x.trim.toUpperCase, "")
-
+val h2: String = hof(newFile, (x: String) => x.trim.toUpperCase, "")
