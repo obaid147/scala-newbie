@@ -30,4 +30,4 @@ makeARandom.apply()
 // until () is applied,and is evaluated each time an apply happens
 
 val n = Tuple3(1, 2, 3)
-n.productArity // means the length of tuple
+n.productArity // means the number of input parameters of tuple n ie: 3
