@@ -12,15 +12,35 @@ object TypeMembers extends App {
 
   case class Muesli(name: String) extends Cereal
 
-  case class FoodBowl[+F <: Food](food: F) {
+  /**
+   * Just like we can have fields as members of a class, We can also have type as members of class as well.
+   * */
+
+  // example
+
+  class demo(x: Int) {
+    val theX: Int = x
+  }
+  new demo(11).theX;//new demo(11).x
+
+  // we cannot access x here because it's a parameter, Same is the rule on TYPES. but below is the solution.
+  abstract class FoodBowl {
+    type FOOD <: Food//FOOD is abstract but must be subtype of Food. and can be used as a val in and out of the abs class.
+    val food: Food
     def eat: String = s"yummy ${food.name}"
   }
-  val foodBowl: FoodBowl[Apple] = FoodBowl(Apple("fiji"))
-  //  val foodInBowl: bowlOfApple.F = bowlOfApple.food // F is a parameter and not a field
 
-  /**
-   * Just like we can have fields as members of a class, We can also
-   * */
+  class AppleBowl(val food: Apple) extends FoodBowl {
+    type FOOD = Apple // overridden and making FOOD an Apple. F and Apple are same
+  }
+
+  val appleBowl: AppleBowl = new AppleBowl(Apple("fiji"))
+  val apple1 = appleBowl.food // Accessing parameter food outside of the class
+  val apple2: Apple = appleBowl.food
+
+  val apple3: appleBowl.FOOD = appleBowl.food // Now, We can use type outside the FoodBowl
+  val apple4: AppleBowl#FOOD = appleBowl.food // Type projecting means it is referring to type FOOD = Apple.
+
 
 
 }
