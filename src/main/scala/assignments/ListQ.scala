@@ -1,3 +1,4 @@
+/*
 import org.scalatest.{FunSuite, Matchers}
 
 trait MyList1[+A]{ //MyList1[A] is invariant in type A
@@ -168,3 +169,4 @@ object MainMethod extends App{
   println(intList.fold(0)((x,y) => x+y))
 }
 
+*/
