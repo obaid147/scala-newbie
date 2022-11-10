@@ -5,7 +5,17 @@
 object Color extends Enumeration {
   val Red, Green, Yellow, Blue = Value
   // id starts from 0.
+  // Value is a method which increments the id everytime we call it.
 }
+
+//example
+var x = 0
+def nextX: Int = {
+  x += 1 // x = 1, 2, 3
+  x - 1 // return 0 and store in a, b = 2-1, c = 3-1
+}
+val a, b, c = nextX//each val assignment calls nextX
+
 
 object Size extends Enumeration {
   val S = Value(1, "Small")
@@ -15,7 +25,7 @@ object Size extends Enumeration {
 }
 // By default, Value increments the Int value by 1 on each call.
 
-Color.values
+Color.values // returns ValueSet
 Size.values // AssertionError if ID is repeated...
 // .values return object.ValueSet eg:- Color.ValueSet
 
@@ -35,3 +45,7 @@ shirt(Color.Green, Size.M)
  * If you need more power, use a sealed trait and
  * case classes/objects
 */
+
+Size.apply(1)
+//Size.withName("XL")//NoSuchElementException
+Size.withName("Extra Large")
