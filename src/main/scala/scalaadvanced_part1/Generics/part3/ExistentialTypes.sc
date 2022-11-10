@@ -1,16 +1,5 @@
 import language.existentials
 
-/** Index:-
-ExistentialTypes(forSome),
-StructuralTypes(Static Duck-Typing),
-East Reflections,
-Refinement types,
-self types & self Aliases,
-Infix type notation,
-Scala Enumeration
-*/
-
-
 /**
  * If type parameters are specified in definition, they must be provided in implementation
 When using a parameterized type in a method or definition, you cannot skip the parameter:*/
