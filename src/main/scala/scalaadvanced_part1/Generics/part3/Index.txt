@@ -1,0 +1,9 @@
+/** Index:-
+ExistentialTypes(forSome),
+StructuralTypes(Static Duck-Typing),
+East Reflections,
+Refinement types,
+self types & self Aliases,
+Infix type notation,
+Scala Enumeration
+*/
