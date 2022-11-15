@@ -1,0 +1,6 @@
+1. Implicit parameters
+2. Type-classes( How Implicit parameters can be used to construct type classes)
+3. Context Bounds( Syntactic sugar for working with Type-Classes)
+4. Implicitly method
+5. Compose-ability(composability) of Type-Classes & ContextBounds constraints
+6. Rules governing the use of Implicits.
