@@ -1,0 +1,10 @@
+1.  Don't overuse implicits, and we won't need to debug them as much.
+
+2. Before trying implicitly, Try applying the implicit method (or parameter) explicitly and see what
+    the compiler says.
+
+3. Check for conflicting implicits. (Scala won't choose - no ambiguity allowed).
+
+4. scalac -Xprint:typer or scalac -Ybrowse:typer to see the desugaring.
+
+5. Also desugar in ammonite can help.
