@@ -1,0 +1,30 @@
+                                BestPractices
+1. Never define implicits between two classes you don't own at least one of.
+
+2. Only use companion object implicits when it is always desired/safe. (Can't un-invite)
+
+3. Don't over-use implicits, use them where they make sense.(compiler maintains LookUp table of these)
+
+4. Also don't avoid implicits, they are the first, safest tool for extending the
+   Scala type system. (just don't overuse)
+
+5. Smart use of implicits can often negate the need for macros (particularly type-classes)
+
+6. Know and apply the rules of implicits.
+
+
+                                Rules
+1. Non-ambiguity, Scala will not choose between applicable implicits.
+
+2. One at a time, implicits will not be automatically composed or chained.
+
+3. Explicits First, implicits will not be used if the code will compile without it.
+
+4. Implicits Only, only parameters, classes or methods marked as implicit will be used.
+
+5. Simple Naming, implicits must be imported into namespace so that no . (dot)
+   is required to reference them (exception is that companion object is also
+   searched for implicits)
+
+6. Only the types matter, the implicit should be named for code readers,
+    but Scala only cares about the types. [FromType and ToType].
