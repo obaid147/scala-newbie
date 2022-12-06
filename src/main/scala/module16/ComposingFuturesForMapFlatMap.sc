@@ -4,6 +4,7 @@
 
 import scala.concurrent._
 import ExecutionContext.Implicits.global
+import scala.annotation.unused
 
 val f1 = Future{
   Thread.sleep(1000)
@@ -12,42 +13,45 @@ val f1 = Future{
 
 // Even before f1 is resolved, we can still work on it
 // as it is not blocked
-val f2 = Future(f1.map(_ * 10))
-
+val f2: Future[Future[Int]] = Future(f1.map(_ * 10))
+val f33: Future[Int] = f2.flatten
+@unused
+val f44: Future[Int] = f2.flatMap(x => x.map(y => y))
 f1.value
 f1.isCompleted
-f2.value
+f33.value
 f2.isCompleted
 
 Thread.sleep(1000)
 
 f1.value
 f1.isCompleted
-f2.value
+f33.value
 f2.isCompleted
 // The future don't block but we can still do work on them
 // assuming we have a result even before we have that result.
 
 // ---------------- using for expression,
 // for expression is being converted into map flatMap
-val x = for{
+@unused
+val x1: Option[Int] = for{
   i <- Option(1)
   j <- Option(2)
   k <- Option(3)
 } yield i+j+k
 // is same as
-val x = Option(1).flatMap(i => Option(2).flatMap(j => Option(3).map(k => i+j+k)))
+@unused
+val x2: Option[Int] = Option(1).flatMap(i => Option(2).flatMap(j => Option(3).map(k => i+j+k)))
 // ---------------- using for expression with Futures
 val a = 1
-// if a was some bd conn, compiler will wait for a to complete
+// if 'a' was some db conn, compiler will wait for it to complete
 val b = 2
-// if b was some response from as service,
-//compiler will wait for b to complete
-val c = 3 // c was something compiler is waiting
+// if 'b' was some response from as service, compiler will also wait for it to complete
+val c = 3 // 'c' was something compiler is waiting
 val s = "The Simple answer is:- "
 val sum = a + b + c
 s"$s $sum"
-// compiler will wait for all a b c & s to complete to return s"..."
+// compiler will wait for all 'a b c & s' to complete to return s"..."
 
 val fa = Future(1)
 val fb = Future(2)
